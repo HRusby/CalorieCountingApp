@@ -1,0 +1,22 @@
+Tables:
+    User
+        Id
+        Name
+        
+    Tracking
+        Id
+        UserId FK
+        DateTime
+        FoodId FK
+        Amount
+        MetricId FK
+
+    Food
+        Id
+        Name
+        CaloriesPer
+        MetricId FK
+
+    Metric
+        Id
+        Name
