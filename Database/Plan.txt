@@ -20,3 +20,10 @@ Tables:
     Metric
         Id
         Name
+
+    Metric Conversions
+        Id
+        From
+        To
+        Multiplier
+    
