@@ -15,6 +15,6 @@ BEGIN
     Name = IFNULL($Name, Name),
     CookedWeight = IFNULL($CookedWeight, CookedWeight),
     CookedWeightMetricId = IFNULL($CookedWeightMetricId, CookedWeightMetricId),
-    RemainingWeight = IFNULL($RemainingWeight, RemainingWeight),
+    RemainingWeight = IFNULL($RemainingWeight, RemainingWeight)
     WHERE Id = $MealId;
 END;
