@@ -7,8 +7,8 @@ CREATE PROCEDURE `AddFood` (
 BEGIN
 	INSERT INTO FOOD (
         Name, 
-        $CaloriesPerMetric, 
-        $MetricId
+        CaloriesPerMetric, 
+        MetricId
     )
     VALUES 
     (
