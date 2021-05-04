@@ -27,3 +27,18 @@ Tables:
         To
         Multiplier
     
+    Meal
+        Id
+        Name
+        UserId
+        CookedWeight
+        CookedWeightMetric
+        RemainingWeight
+        CookedOn
+    
+    MealComponents
+        Id
+        MealId
+        FoodId
+        MetricId
+        Quantity
