@@ -1,7 +1,7 @@
 CREATE TABLE FOOD (
     Id INTEGER AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(255),
-    CaloriesPerMetric DECIMAL,
+    CaloriesPerMetric DECIMAL(10,5),
     MetricId INTEGER
 );
 

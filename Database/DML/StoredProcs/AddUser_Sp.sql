@@ -1,0 +1,10 @@
+CREATE PROCEDURE AddUser (
+	IN UserName VARCHAR(255),
+    OUT GeneratedId INTEGER
+)
+BEGIN
+	INSERT INTO USER (Name)
+    VALUES (UserName);
+
+    SELECT LAST_INSERT_ID() INTO GeneratedId; 
+END;
