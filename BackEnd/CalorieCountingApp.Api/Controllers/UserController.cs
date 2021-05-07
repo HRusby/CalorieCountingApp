@@ -8,9 +8,17 @@ namespace CalorieCountingApp.Controllers
     {
         [HttpPost]
         [Route("Login")]
-        public bool Login(string userName, string password)
+        public bool Login(string userName, string encodedPassword)
         {
             return true;
+        }
+
+        [HttpPost]
+        [Route("AddNewUser")]
+        public int AddNewUser(string userName, string encodedPassword)
+        {
+            // Returns the new user Id
+            return -1;
         }
     }
 }

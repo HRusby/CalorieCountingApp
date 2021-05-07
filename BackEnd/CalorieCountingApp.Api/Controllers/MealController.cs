@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using CalorieCountingApp.Domain;
+using System;
+using CalorieCountingApp.Domain.Enums;
 
 namespace CalorieCountingApp.Controllers
 {
@@ -8,19 +11,27 @@ namespace CalorieCountingApp.Controllers
     {
         [HttpPost]
         [Route("AddNewMeal")]
-        public bool AddNewMeal(){
-            return true;
+        public int AddNewMeal(
+            string name,
+            int userId,
+            double cookedWeight,
+            Metric cookedWeightMetricId,
+            double remainingWeight,
+            DateTime cookedOn)
+        {
+            // Returns the Id of the new record
+            return -1;
         }
 
         [HttpPost]
         [Route("UpdateMeal")]
-        public bool UpdateMeal(){
+        public bool UpdateMeal(Meal updatedMeal){
             return true;
         }
 
         [HttpPost]
         [Route("DeleteMeal")]
-        public bool DeleteMeal(){
+        public bool DeleteMeal(int mealId){
             return true;
         }
     }
