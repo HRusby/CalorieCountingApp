@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieCountingApp.Api", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieCountingApp.Domain", "CalorieCountingApp.Domain\CalorieCountingApp.Domain.csproj", "{B65B3B6C-C7A7-476F-860D-989A9E20E7E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieCountingApp.Dao", "CalorieCountingApp.Dao\CalorieCountingApp.Dao.csproj", "{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{B65B3B6C-C7A7-476F-860D-989A9E20E7E5}.Release|x64.Build.0 = Release|Any CPU
 		{B65B3B6C-C7A7-476F-860D-989A9E20E7E5}.Release|x86.ActiveCfg = Release|Any CPU
 		{B65B3B6C-C7A7-476F-860D-989A9E20E7E5}.Release|x86.Build.0 = Release|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Debug|x64.Build.0 = Debug|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Debug|x86.Build.0 = Debug|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Release|x64.ActiveCfg = Release|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Release|x64.Build.0 = Release|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Release|x86.ActiveCfg = Release|Any CPU
+		{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

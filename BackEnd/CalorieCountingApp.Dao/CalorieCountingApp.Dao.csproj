@@ -1,16 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="MySql.Data" Version="8.0.23" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\CalorieCountingApp.Domain\CalorieCountingApp.Domain.csproj" />
-    <ProjectReference Include="..\CalorieCountingApp.Dao\CalorieCountingApp.Dao.csproj" />
   </ItemGroup>
-
 </Project>
