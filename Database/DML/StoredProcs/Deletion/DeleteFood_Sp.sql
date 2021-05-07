@@ -1,7 +1,0 @@
-CREATE PROCEDURE DeleteFood (
-	IN $FoodId INTEGER
-)
-BEGIN
-	DELETE FROM FOOD 
-    WHERE Id = $FoodId;
-END;

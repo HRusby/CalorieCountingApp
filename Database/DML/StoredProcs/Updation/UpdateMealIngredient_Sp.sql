@@ -1,6 +1,6 @@
 CREATE PROCEDURE UpdateMealIngredient (
     IN $IngredientId INTEGER,
-    IN $FoodId INTEGER,
+    IN $IngredientId INTEGER,
     IN $MetricId INTEGER,
     IN $Quantity DOUBLE,
     OUT GeneratedId INTEGER
@@ -8,10 +8,10 @@ CREATE PROCEDURE UpdateMealIngredient (
 BEGIN
     -- Update Some Ingredient:
     -- MealId and Id should never change
-    -- FoodId, MetricId and Quantity may change
+    -- IngredientId, MetricId and Quantity may change
 	
     UPDATE MEAL_INGREDIENT SET
-    FoodId = IFNULL($FoodId, FoodId),
+    IngredientId = IFNULL($IngredientId, IngredientId),
     MetricId = IFNULL($MetricId, MetricId),
     Quantity = IFNULL($Quantity, Quantity)
     WHERE Id = $IngredientId;

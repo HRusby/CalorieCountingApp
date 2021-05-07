@@ -7,11 +7,11 @@ Tables:
         Id
         UserId FK
         DateTime
-        FoodId FK
+        IngredientId FK
         Amount
         MetricId FK
 
-    Food
+    Ingredient
         Id
         Name
         CaloriesPer
@@ -39,6 +39,6 @@ Tables:
     MealComponents
         Id
         MealId
-        FoodId
+        IngredientId
         MetricId
         Quantity

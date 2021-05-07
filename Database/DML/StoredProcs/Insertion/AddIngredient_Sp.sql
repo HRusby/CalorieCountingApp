@@ -1,11 +1,11 @@
-CREATE PROCEDURE `AddFood` (
+CREATE PROCEDURE `AddIngredient` (
     IN $Name VARCHAR(255),
     IN $CaloriesPerMetric DECIMAL(10,5),
     IN $MetricId INTEGER,
     OUT GeneratedId INTEGER
 )
 BEGIN
-	INSERT INTO FOOD (
+	INSERT INTO INGREDIENT (
         Name, 
         CaloriesPerMetric, 
         MetricId

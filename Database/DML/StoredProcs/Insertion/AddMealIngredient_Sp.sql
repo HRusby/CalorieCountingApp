@@ -1,6 +1,6 @@
 CREATE PROCEDURE AddMealIngredient (
     IN $MealId INTEGER,
-    IN $FoodId INTEGER,
+    IN $IngredientId INTEGER,
     IN $MetricId INTEGER,
     IN $Quantity DOUBLE,
     OUT GeneratedId INTEGER
@@ -10,14 +10,14 @@ BEGIN
     -- Gives the weight in the meal of this ingredient
 	INSERT INTO MEAL_INGREDIENT (
         MealId, 
-        FoodId, 
+        IngredientId, 
         MetricId,
         Quantity
     )
     VALUES 
     (
         $MealId,
-        $FoodId,
+        $IngredientId,
         $MetricId,
         $Quantity
     );

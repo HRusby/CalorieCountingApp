@@ -4,7 +4,7 @@ CREATE PROCEDURE GetAllUserTrackingRecords(
 BEGIN
     SELECT 
         Id,
-        FoodId,
+        IngredientId,
         MetricId,
         Quantity,
         `DateTime`

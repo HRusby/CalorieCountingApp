@@ -1,6 +1,6 @@
 CREATE PROCEDURE `AddTrackingRecord` (
 	IN $UserId INTEGER,
-    IN $FoodId INTEGER,
+    IN $IngredientId INTEGER,
     IN $MetricId INTEGER,
     IN $Quantity DOUBLE,
     IN $DateTime DATETIME,
@@ -9,13 +9,13 @@ CREATE PROCEDURE `AddTrackingRecord` (
 BEGIN
 	INSERT INTO TRACKING (
         UserId, 
-        FoodId, 
+        IngredientId, 
         MetricId, 
         Quantity, 
         `DateTime`)
     VALUES (
         $UserId,
-        $FoodId,
+        $IngredientId,
         $MetricId,
         $Quantity,
         $DateTime
