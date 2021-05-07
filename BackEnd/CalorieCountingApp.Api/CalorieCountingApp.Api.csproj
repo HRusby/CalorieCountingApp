@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CalorieCountingApp.Domain\CalorieCountingApp.Domain.csproj" />
-    <ProjectReference Include="..\CalorieCountingApp.Dao\CalorieCountingApp.Dao.csproj" />
+    <ProjectReference Include="..\CalorieCountingApp.Data\CalorieCountingApp.Data.csproj" />
   </ItemGroup>
 
 </Project>

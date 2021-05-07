@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieCountingApp.Api", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieCountingApp.Domain", "CalorieCountingApp.Domain\CalorieCountingApp.Domain.csproj", "{B65B3B6C-C7A7-476F-860D-989A9E20E7E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieCountingApp.Dao", "CalorieCountingApp.Dao\CalorieCountingApp.Dao.csproj", "{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieCountingApp.Data", "CalorieCountingApp.Data\CalorieCountingApp.Data.csproj", "{160B32DC-838F-4C3D-9308-1A0AAFB2F53C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
