@@ -1,0 +1,29 @@
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /source
+
+COPY *.sln .
+COPY CalorieCountingApp.Api/*.csproj ./CalorieCountingApp.Api/
+COPY CalorieCountingApp.Data/*.csproj ./CalorieCountingApp.Data/
+COPY CalorieCountingApp.Domain/*.csproj ./CalorieCountingApp.Domain/
+RUN dotnet restore
+
+COPY CalorieCountingApp.Api/. ./CalorieCountingApp.Api/
+COPY CalorieCountingApp.Data/. ./CalorieCountingApp.Data/
+COPY CalorieCountingApp.Domain/. ./CalorieCountingApp.Domain/
+WORKDIR /source/CalorieCountingApp.Api
+RUN dotnet publish -c release -o /app 
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
+WORKDIR /app
+COPY --from=build /app ./
+ENTRYPOINT [ "dotnet", "CalorieCountingApp.Api.dll" ]
+
+### Docker Build ###
+# docker build -t todolist-backend-image .
+
+### Docker Run ###
+# docker run -d \
+# -p 5001:80 \
+# --network todolist \
+# --name=todolist-backend \
+# todolist-backend-image
