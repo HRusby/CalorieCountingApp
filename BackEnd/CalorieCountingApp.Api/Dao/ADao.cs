@@ -1,7 +1,7 @@
 using System;
 using MySql.Data.MySqlClient;
 
-namespace BackEnd.Dao
+namespace CalorieCountingApp.Dao
 {
 
     public abstract class ADao : IDisposable
