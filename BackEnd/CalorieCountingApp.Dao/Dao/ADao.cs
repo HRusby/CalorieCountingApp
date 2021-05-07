@@ -3,7 +3,6 @@ using MySql.Data.MySqlClient;
 
 namespace CalorieCountingApp.Dao
 {
-
     public abstract class ADao : IDisposable
     {
         protected MySqlConnection Connection {get;private set;}
