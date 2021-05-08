@@ -1,7 +1,9 @@
 using System;
+using CalorieCountingApp.Data.Dao;
 using CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace CalorieCountingApp.Controllers
 {
@@ -9,6 +11,15 @@ namespace CalorieCountingApp.Controllers
     [Route("Tracking")]
     public class TrackingController
     {
+
+        private readonly TrackingDao dao;
+
+        public TrackingController(IConfiguration configuration)
+        {
+            string connString = configuration.GetValue<string>("ConnectionStrings:CalorieCounting");
+            dao = new TrackingDao(connString);
+        }
+
         [HttpPost]
         [Route("AddNewRecord")]
         public int AddNewRecord(
@@ -19,19 +30,24 @@ namespace CalorieCountingApp.Controllers
             DateTime dateTime)
         {
             // Returns the new records Id
-            return -1;
+            return dao.AddNewTrackingRecord(
+                        userId,
+                        ingredientId,
+                        metricId,
+                        quantity,
+                        dateTime);
         }
 
         [HttpPost]
         [Route("UpdateRecord")]
         public bool UpdateRecord(TrackingRecord updatedRecord){
-            return true;
+            return dao.UpdateTrackingRecord(updatedRecord);
         }
 
         [HttpPost]
         [Route("DeleteRecord")]
         public bool DeleteRecord(int recordId){
-            return true;
+            return dao.DeleteTrackingRecord(recordId);
         }
     }
 }
