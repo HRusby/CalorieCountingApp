@@ -19,11 +19,11 @@ COPY --from=build /app ./
 ENTRYPOINT [ "dotnet", "CalorieCountingApp.Api.dll" ]
 
 ### Docker Build ###
-# docker build -t todolist-backend-image .
+# docker build --network=host -t caloriecounting-backend-image ./BackEnd
 
 ### Docker Run ###
 # docker run -d \
 # -p 5001:80 \
-# --network todolist \
-# --name=todolist-backend \
-# todolist-backend-image
+# --network caloriecounting \
+# --name=caloriecounting-backend \
+# caloriecounting-backend-image

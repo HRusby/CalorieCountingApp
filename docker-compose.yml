@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  caloriecounting-db: # Service Hosting MariaDb
+    image: caloriecounting-database-image
+    container_name: caloriecounting-db
+    ports:
+      - "6001:3306"
+    volumes:
+      - caloriecounting-db:/var/lib/mysql
+    restart: always 
+    networks: 
+        - caloriecounting-network
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: CalorieCounting
+      MYSQL_USER: root
+    
+  backend: # Backend C# Service
+    image: caloriecounting-backend-image
+    container_name: caloriecounting-backend
+    restart: always
+    networks: 
+        - caloriecounting-network
+    depends_on: 
+      - caloriecounting-db
+volumes:
+  caloriecounting-db:
+networks: 
+    caloriecounting-network:
