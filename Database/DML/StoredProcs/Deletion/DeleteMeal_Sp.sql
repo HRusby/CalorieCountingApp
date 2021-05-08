@@ -1,0 +1,11 @@
+DELIMITER ,,
+
+CREATE PROCEDURE DeleteMeal (
+	IN $MealId INTEGER
+)
+BEGIN
+	DELETE FROM MEAL 
+    WHERE Id = $MealId;
+END;
+
+,,
