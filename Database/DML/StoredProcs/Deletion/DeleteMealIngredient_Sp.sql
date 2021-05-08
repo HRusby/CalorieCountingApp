@@ -1,6 +1,6 @@
 DELIMITER ,,
 
-CREATE PROCEDURE DeleteMeal (
+CREATE PROCEDURE DeleteMealIngredient (
 	IN $MealIngredientId INTEGER
 )
 BEGIN

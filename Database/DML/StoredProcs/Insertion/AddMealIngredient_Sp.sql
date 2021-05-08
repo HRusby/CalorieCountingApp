@@ -1,10 +1,11 @@
 DELIMITER ,,
+
 CREATE PROCEDURE AddMealIngredient (
     IN $MealId INTEGER,
     IN $IngredientId INTEGER,
     IN $MetricId INTEGER,
     IN $Quantity DOUBLE,
-    OUT GeneratedId INTEGER
+    OUT $GeneratedId INTEGER
 )
 BEGIN
     -- Adds a new Component of some Meal
@@ -23,6 +24,7 @@ BEGIN
         $Quantity
     );
 
-    SELECT LAST_INSERT_ID() INTO GeneratedId; 
+    SELECT LAST_INSERT_ID() INTO $GeneratedId; 
 END;
+
 ,,

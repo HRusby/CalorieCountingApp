@@ -3,8 +3,7 @@ CREATE PROCEDURE UpdateMealIngredient (
     IN $MealIngredientId INTEGER,
     IN $IngredientId INTEGER,
     IN $MetricId INTEGER,
-    IN $Quantity DOUBLE,
-    OUT GeneratedId INTEGER
+    IN $Quantity DOUBLE
 )
 BEGIN
     -- Update Some Ingredient:
