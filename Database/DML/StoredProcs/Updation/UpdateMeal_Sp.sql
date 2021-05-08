@@ -1,11 +1,11 @@
 DELIMITER ,,
+
 CREATE PROCEDURE UpdateMeal (
     IN $MealId INTEGER,
     IN $Name VARCHAR(255),
     IN $CookedWeight VARCHAR(255),
     IN $CookedWeightMetricId VARCHAR(255),
-    IN $RemainingWeight DOUBLE,
-    OUT GeneratedId INTEGER
+    IN $RemainingWeight DOUBLE
 )
 BEGIN
     -- Update Some Meal, UserId, Id and CookedOn should never change
@@ -19,4 +19,5 @@ BEGIN
     RemainingWeight = IFNULL($RemainingWeight, RemainingWeight)
     WHERE Id = $MealId;
 END;
+
 ,,
