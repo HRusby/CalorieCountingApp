@@ -1,3 +1,4 @@
+DELIMITER ,,
 CREATE PROCEDURE `AddIngredient` (
     IN $Name VARCHAR(255),
     IN $CaloriesPerMetric DECIMAL(10,5),
@@ -19,3 +20,4 @@ BEGIN
 
     SELECT LAST_INSERT_ID() INTO GeneratedId; 
 END;
+,,

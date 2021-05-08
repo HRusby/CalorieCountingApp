@@ -1,3 +1,4 @@
+DELIMITER ,,
 CREATE PROCEDURE UpdateIngredient (
     IN $IngredientId INTEGER,
 	IN $Name VARCHAR(255),
@@ -11,3 +12,4 @@ BEGIN
     MetricId = IFNULL($MetricId, MetricId)
     WHERE Id = $IngredientId;
 END;
+,,

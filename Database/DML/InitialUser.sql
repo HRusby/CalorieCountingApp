@@ -1,1 +1,5 @@
+DELIMITER ,,
+
 INSERT INTO `USER` (Name) VALUES ('Harry');
+
+,,

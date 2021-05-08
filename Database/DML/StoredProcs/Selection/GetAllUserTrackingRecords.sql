@@ -1,3 +1,4 @@
+DELIMITER ,,
 CREATE PROCEDURE GetAllUserTrackingRecords(
     IN $UserId INTEGER
 )
@@ -9,5 +10,6 @@ BEGIN
         Quantity,
         `DateTime`
     FROM TRACKING
-    WHERE UserId = $UserId
+    WHERE UserId = $UserId;
 END;
+,,

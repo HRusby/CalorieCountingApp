@@ -1,3 +1,4 @@
+DELIMITER ,,
 INSERT INTO METRIC_CONVERSIONS (
     FromMetricId,
     ToMetricId,
@@ -37,3 +38,4 @@ INSERT INTO METRIC_CONVERSIONS (
     (SELECT Id FROM METRIC WHERE lower(Name) = 'millilitre'),
     0.001
 );
+,,

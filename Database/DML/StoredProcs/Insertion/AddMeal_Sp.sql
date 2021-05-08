@@ -1,3 +1,4 @@
+DELIMITER ,,
 CREATE PROCEDURE AddMeal (
     IN $Name VARCHAR(255),
     IN $UserId VARCHAR(255),
@@ -29,3 +30,4 @@ BEGIN
 
     SELECT LAST_INSERT_ID() INTO GeneratedId; 
 END;
+,,

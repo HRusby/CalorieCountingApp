@@ -1,3 +1,4 @@
+DELIMITER ,,
 CREATE PROCEDURE UpdateMeal (
     IN $MealId INTEGER,
     IN $Name VARCHAR(255),
@@ -18,3 +19,4 @@ BEGIN
     RemainingWeight = IFNULL($RemainingWeight, RemainingWeight)
     WHERE Id = $MealId;
 END;
+,,

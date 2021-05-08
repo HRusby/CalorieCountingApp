@@ -1,3 +1,4 @@
+DELIMITER ,,
 CREATE PROCEDURE UpdateTrackingRecord (
     IN $TrackingId INTEGER,
     IN $UserId INTEGER,
@@ -15,3 +16,4 @@ BEGIN
     `DateTime` = IFNULL($DateTime, Name)
     WHERE Id = $TrackingId;
 END;
+,,
