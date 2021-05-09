@@ -1,4 +1,5 @@
 DELIMITER ,,
+
 CREATE PROCEDURE UpdateMealIngredient (
     IN $MealIngredientId INTEGER,
     IN $IngredientId INTEGER,
@@ -16,4 +17,5 @@ BEGIN
     Quantity = IFNULL($Quantity, Quantity)
     WHERE Id = $MealIngredientId;
 END;
+
 ,,

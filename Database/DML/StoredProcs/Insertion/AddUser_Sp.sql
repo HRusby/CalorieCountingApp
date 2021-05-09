@@ -1,4 +1,5 @@
 DELIMITER ,,
+
 CREATE PROCEDURE AddUser (
 	IN $UserName VARCHAR(255),
     IN $EncodedPassword VARCHAR(1000),
@@ -10,4 +11,5 @@ BEGIN
 
     SELECT LAST_INSERT_ID() INTO $GeneratedId; 
 END;
+
 ,,

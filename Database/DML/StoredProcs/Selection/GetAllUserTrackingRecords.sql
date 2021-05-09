@@ -1,4 +1,5 @@
 DELIMITER ,,
+
 CREATE PROCEDURE GetAllUserTrackingRecords(
     IN $UserId INTEGER
 )
@@ -12,4 +13,5 @@ BEGIN
     FROM TRACKING
     WHERE UserId = $UserId;
 END;
+
 ,,

@@ -6,7 +6,7 @@ CREATE PROCEDURE AddMeal (
     IN $CookedWeight VARCHAR(255),
     IN $CookedWeightMetricId VARCHAR(255),
     IN $CookedOn DATETIME,
-    OUT GeneratedId INTEGER
+    OUT $GeneratedId INTEGER
 )
 BEGIN
     -- Create a new Meal, CookedWeight can be null to start (i.e. until it's been cooked)
@@ -29,7 +29,7 @@ BEGIN
         IFNULL($CookedOn, SYSDATE())
     );
 
-    SELECT LAST_INSERT_ID() INTO GeneratedId; 
+    SELECT LAST_INSERT_ID() INTO $GeneratedId; 
 END;
 
 ,,

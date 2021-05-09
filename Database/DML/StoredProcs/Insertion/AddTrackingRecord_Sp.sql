@@ -1,5 +1,6 @@
 DELIMITER ,,
-CREATE PROCEDURE `AddTrackingRecord` (
+
+CREATE PROCEDURE AddTrackingRecord (
 	IN $UserId INTEGER,
     IN $IngredientId INTEGER,
     IN $MetricId INTEGER,
@@ -24,4 +25,5 @@ BEGIN
 
     SELECT LAST_INSERT_ID() INTO $GeneratedId; 
 END;
+
 ,,
