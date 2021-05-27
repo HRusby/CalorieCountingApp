@@ -1,0 +1,29 @@
+Calorie Counter App
+
+Simple Mode selection
+    Button for Calorie Tracking
+    Button for Meal Creation
+
+Basic user selection
+
+Calendar Navigation
+    Move between dates
+
+Table for selected day
+    Each Item:
+        DateTime
+        Item
+        Calories
+        Amount
+        Metric
+
+
+Form adding new Meal
+
+
+Form adding new track:
+    Add new ingredient
+        Textbox populates with similar ingredients from api
+    Add New Meal Portion
+        Select from currently available meals
+        Input Weight
