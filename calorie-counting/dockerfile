@@ -1,0 +1,24 @@
+FROM node:lts-alpine as build-stage
+WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+### Docker Build ###
+# docker build --network=host -t todolist-frontend-image .
+
+### Docker Run ###
+# docker run -it \
+# -v ${PWD}:/todolist-frontend \
+# -v /todolist/node_modules \
+# -p 7001:3000 \
+# -e CHOKIDAR_USEPOLLING=true \
+# --name=todolist-frontend \
+# todolist-frontend-image

@@ -12,7 +12,8 @@ services:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: CalorieCounting
       MYSQL_USER: root
-    expose: 3306
+    ports:
+      - "7001:3306"
     
   backend: # Backend C# Service
     build: ./BackEnd
@@ -25,5 +26,19 @@ services:
       - caloriecounting-db
     ports:
       - "5001:80"
+  
+
+  frontend: # Frontend Vue Service
+      build: ./calorie-counting
+      volumes:
+        - ./calorie-counting:/CalorieCountingApp/
+      image: caloriecounting-frontend-image
+      container_name: caloriecounting-frontend
+      restart: always
+      depends_on: 
+        - caloriecounting-db
+        - backend
+      ports:
+        - "8001:80"
 volumes:
   caloriecounting-db:
