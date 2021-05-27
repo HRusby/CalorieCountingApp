@@ -1,5 +1,3 @@
-DELIMITER ,,
-
 CREATE PROCEDURE AddMealIngredient (
     IN $MealId INTEGER,
     IN $IngredientId INTEGER,
@@ -26,5 +24,3 @@ BEGIN
 
     SELECT LAST_INSERT_ID() INTO $GeneratedId; 
 END;
-
-,,

@@ -1,5 +1,3 @@
-DELIMITER ,,
-
 CREATE PROCEDURE CheckLogin (
 	IN $UserName VARCHAR(255),
     IN $EncodedPassword VARCHAR(1000),
@@ -19,5 +17,3 @@ BEGIN
         SET $ValidLogin := FALSE;
     END IF;
 END;
-
-,,

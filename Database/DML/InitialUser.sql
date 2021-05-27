@@ -1,5 +1,1 @@
-DELIMITER ,,
-
-INSERT INTO `USER` (Name) VALUES ('Harry');
-
-,,
+INSERT INTO `USER` (Name, EncodedPassword) VALUES ('Harry', 'testPass');
