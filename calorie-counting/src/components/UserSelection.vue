@@ -28,6 +28,7 @@ export default {
           {name: "harry", id: 1},
           {name: "max", id: 2}
       ]
+      console.log('state user: ' + this.$store.state.user)
   }
 };
 </script>
