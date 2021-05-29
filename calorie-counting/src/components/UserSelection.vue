@@ -18,6 +18,9 @@ export default {
   methods: {
       setUser(id){
           this.$store.commit('setUser', id)
+      },
+      unsetUser(){
+          this.$store.commit('unsetUser')
       }
   },
   created(){

@@ -7,6 +7,9 @@ export default createStore({
   mutations: {
     setUser(state, id){
       state.user = id
+    },
+    unsetUser(state){
+      state.user = -1
     }
   },
   actions: {
