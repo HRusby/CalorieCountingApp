@@ -17,7 +17,7 @@ export default {
   },
   methods: {
       setUser(id){
-          console.log(id)
+          this.$store.commit('setUser', id)
       }
   },
   created(){
