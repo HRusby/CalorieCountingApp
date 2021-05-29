@@ -1,16 +1,21 @@
 <template>
-  <user-selection></user-selection>
+  <div>
+    <div v-if="this.$store.getters.selectedUser === -1">
+      <user-selection></user-selection>
+    </div>
+    <div v-else @click="this.$store.commit('unsetUser')">user with id {{this.$store.getters.selectedUser}} has been selected</div>
+  </div>
 </template>
 
 <script>
-import UserSelection from './components/UserSelection.vue'
+import UserSelection from "./components/UserSelection.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    UserSelection
-  }
-}
+    UserSelection,
+  },
+};
 </script>
 
 <style>

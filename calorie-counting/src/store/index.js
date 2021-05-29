@@ -17,5 +17,8 @@ export default createStore({
   actions: {
   },
   modules: {
+  },
+  getters:{
+    selectedUser: state => {return state.user}
   }
 })
