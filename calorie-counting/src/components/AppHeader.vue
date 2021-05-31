@@ -1,8 +1,8 @@
 <template>
-  <nav>
+  <nav class="container mb-5 py-10 bg-green-400 text-white shadow-lg">
     <span>Calorie Counting App</span>
-    <span v-if="selectedUser !== -1" @click="unsetUser">Change User</span>
-    <span v-if="selectedMode !== ''" @click="unsetMode">Change Mode</span>
+    <a href='#' class="mx-2" v-if="selectedUser !== -1" @click="unsetUser" title='Change User'>U</a>
+    <a href='#' class="mx-2" v-if="selectedMode !== ''" @click="unsetMode" title='Change Mode'>M</a>
   </nav>
 </template>
 
@@ -32,12 +32,4 @@ export default {
 </script>
 
 <style scoped>
-    nav{
-        position: relative;        
-        width: 100%;
-        padding: 60px;
-        text-align: center;
-        background: darkgreen;
-        color: white;
-    }
 </style>

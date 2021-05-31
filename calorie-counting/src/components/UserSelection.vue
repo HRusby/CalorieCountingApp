@@ -1,8 +1,15 @@
 <template>
-  <div>
-    <p v-for="user in users" :key="user.id" @click="setUser(user.id)">
-      {{ user.name }}
-    </p>
+  <div class="flex justify-center space-x-4">
+    <a
+      href="#"
+      v-for="user in users"
+      :key="user.id"
+      @click="setUser(user.id)"
+      :title="user.name"
+      class="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 text-lg text-white"
+    >
+      {{ user.name.charAt(0).toUpperCase() }}
+    </a>
   </div>
 </template>
 
@@ -13,20 +20,20 @@ export default {
   data() {
     return {
       users: [],
-    }
+    };
   },
   methods: {
-      setUser(id){
-          this.$store.commit('setUser', id)
-      }
+    setUser(id) {
+      this.$store.commit("setUser", id);
+    },
   },
-  created(){
+  created() {
     // TODO: Make call to backend to retrieve users
-      this.users = [
-          {name: "harry", id: 1},
-          {name: "max", id: 2}
-      ]
-  }
+    this.users = [
+      { name: "harry", id: 1 },
+      { name: "max", id: 2 },
+    ];
+  },
 };
 </script>
 
