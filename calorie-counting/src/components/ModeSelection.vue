@@ -5,26 +5,29 @@
       <p @click="setMode('calorieCounting')">Calorie Counting</p>
     </div>
     <div v-else>
-      <p @click="unsetMode">Change Mode</p>
+      <meal-creation v-if="selectedMode === 'mealCreation'"></meal-creation>
+      <tracking v-if="selectedMode === 'calorieCounting'"></tracking>
     </div>
   </div>
 </template>
 
 <script>
+import MealCreation from "./MealCreation.vue";
+import Tracking from "./Tracking.vue";
 export default {
+  components: { MealCreation, Tracking },
   name: "ModeSelection",
   props: {},
   methods: {
     setMode(mode) {
       this.$store.commit("setMode", mode);
     },
-    unsetMode() {
-      this.$store.commit("unsetMode");
+  },
+  computed: {
+    selectedMode() {
+      return this.$store.getters.selectedMode;
     },
   },
-  computed:{
-    selectedMode(){return this.$store.getters.selectedMode}
-  }
 };
 </script>
 
