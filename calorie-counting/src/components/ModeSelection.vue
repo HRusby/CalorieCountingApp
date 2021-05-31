@@ -1,8 +1,20 @@
 <template>
-  <div>
-    <div v-if="selectedMode === ''">
-      <p @click="setMode('mealCreation')">Meal Creation</p>
-      <p @click="setMode('calorieCounting')">Calorie Counting</p>
+  <div class="container">
+    <div class="flex justify-center space-x-4" v-if="selectedMode === ''">
+      <a
+        href="#"
+        class="rounded-full h-20 w-40 flex items-center justify-center bg-green-600 text-lg text-white"
+        @click="setMode('mealCreation')"
+      >
+        Meal Creation
+      </a>
+      <a
+        href="#"
+        class="rounded-full h-20 w-40 flex items-center justify-center bg-green-600 text-lg text-white"
+        @click="setMode('calorieCounting')"
+      >
+        Calorie Counting
+      </a>
     </div>
     <div v-else>
       <meal-creation v-if="selectedMode === 'mealCreation'"></meal-creation>
