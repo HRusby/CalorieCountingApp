@@ -1,5 +1,5 @@
 <template>
-    <div></div>
+    <div>Meal Creation</div>
 </template>
 
 <script>
