@@ -8,27 +8,24 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "UserSelection",
   props: {},
   data() {
     return {
       users: [],
-    };
+    }
   },
   methods: {
       setUser(id){
           this.$store.commit('setUser', id)
-      },
-      unsetUser(){
-          this.$store.commit('unsetUser')
       }
   },
   created(){
+    // TODO: Make call to backend to retrieve users
       this.users = [
           {name: "harry", id: 1},
           {name: "max", id: 2}
       ]
-      console.log('state user: ' + this.$store.state.user)
   }
 };
 </script>
