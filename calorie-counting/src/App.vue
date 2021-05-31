@@ -1,10 +1,10 @@
 <template>
   <div>
+    <app-header ></app-header>
     <div v-if="selectedUser === -1">
       <user-selection></user-selection>
     </div>
     <div v-else>
-      <p @click="unsetUser">Unset User</p>
       <mode-selection></mode-selection>
     </div>
   </div>
@@ -13,23 +13,21 @@
 <script>
 import ModeSelection from "./components/ModeSelection.vue";
 import UserSelection from "./components/UserSelection.vue";
+import AppHeader from "./components/AppHeader.vue";
 
 export default {
   name: "App",
   components: {
     UserSelection,
     ModeSelection,
+    AppHeader,
   },
-  methods: {
-    unsetUser() {
-      this.$store.commit("unsetUser");
-    },
-  },
+  methods: {},
   computed: {
     selectedUser() {
       return this.$store.getters.selectedUser;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -39,7 +37,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #182836;
 }
 </style>
