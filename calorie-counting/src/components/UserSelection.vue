@@ -1,7 +1,6 @@
 <template>
   <div class="flex justify-center space-x-4">
-    <a
-      href="#"
+    <button
       v-for="user in users"
       :key="user.id"
       @click="setUser(user.id)"
@@ -9,7 +8,7 @@
       class="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 text-lg text-white"
     >
       {{ user.name.charAt(0).toUpperCase() }}
-    </a>
+    </button>
   </div>
 </template>
 

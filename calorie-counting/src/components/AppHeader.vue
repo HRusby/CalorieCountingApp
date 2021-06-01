@@ -1,8 +1,8 @@
 <template>
   <nav class="flex mb-5 py-10 bg-green-600 text-white shadow-lg">
     <span class="mx-auto">Calorie Counting App</span>
-    <a href='#' class="mx-2" v-if="selectedUser !== -1" @click="unsetUser" title='Change User'>U</a>
-    <a href='#' class="mx-2" v-if="selectedMode !== ''" @click="unsetMode" title='Change Mode'>M</a>
+    <button class="mx-2" v-if="selectedUser !== -1" @click="unsetUser" title='Change User'>U</button>
+    <button class="mx-2" v-if="selectedMode !== ''" @click="unsetMode" title='Change Mode'>M</button>
   </nav>
 </template>
 
