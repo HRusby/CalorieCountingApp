@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <app-header ></app-header>
+  <div class="bg-gray-100 shadow-lg pb-10 mx-40">
+    <app-header></app-header>
     <div v-if="selectedUser === -1">
       <user-selection></user-selection>
     </div>
@@ -31,7 +31,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
