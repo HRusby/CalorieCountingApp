@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain.Enums;
@@ -51,6 +52,30 @@ namespace CalorieCountingApp.Data.Dao
                 cmd.Parameters.Add(new MySqlParameter("$MealId", mealId));
                 int affectedRows = cmd.ExecuteNonQuery();
                 return affectedRows == 1;
+            }
+        }
+
+        public List<Meal> GetMealsForUser(int userId){
+            using(MySqlCommand cmd = new MySqlCommand("GetMealsForUser", Connection)){
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("$UserId", userId));
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                List<Meal> meals = new List<Meal>();
+                while(rdr.Read()){
+                    // Create Meal
+                    Meal meal = new Meal(
+                        rdr.GetInt32("Id"),
+                        rdr.GetString("Name"),
+                        rdr.GetInt32("UserId"),
+                        rdr.GetDouble("CookedWeight"),
+                        (Metric)rdr.GetInt32("CookedWeightMetricId"),
+                        rdr.GetDouble("RemainingWeight"),
+                        rdr.GetDateTime("CookedOn")
+                    );
+                    meals.Add(meal);
+                }
+                return meals;
             }
         }
     }

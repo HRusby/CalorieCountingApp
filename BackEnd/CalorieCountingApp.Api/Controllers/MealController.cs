@@ -5,6 +5,7 @@ using System.Text.Json;
 using CalorieCountingApp.Domain.Enums;
 using CalorieCountingApp.Data.Dao;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace CalorieCountingApp.Controllers
 {
@@ -41,6 +42,12 @@ namespace CalorieCountingApp.Controllers
         [Route("DeleteMeal")]
         public bool DeleteMeal(int mealId){
             return dao.DeleteMeal(mealId);
+        }
+
+        [HttpPost]
+        [Route("GetMealsForUser")]
+        public List<Meal> GetMealsForUser([FromBody]int userId){
+            return dao.GetMealsForUser(userId);
         }
     }
 }
