@@ -2,30 +2,20 @@
   <div class="flex space-y-2 grid grid-cols-1 text-center">
     <h1 class="mx-auto">Meal Creation</h1>
     <br />
-    <div class="container" v-if="mode === ''">
+    <div class="container">
       <button
-        @click="mode = 'newMeal'"
-        class="rounded-full h-20 w-40 flex items-center justify-center bg-green-600 text-lg text-white mx-auto my-2"
-      >
-        Add Meal
-      </button>
-      <button
-        @click="mode = 'updateMeal'"
-        class="rounded-full h-20 w-40 flex items-center justify-center bg-green-600 text-lg text-white mx-auto my-2"
-      >
-        Update Meal
-      </button>
+        @click="createNewMeal = true; selectedMealId = null"
+        class="rounded-full h-10 w-40 flex items-center justify-center bg-green-600 text-lg text-white mx-auto my-2"
+      >Add New Meal</button>
+
+      <select v-if="!createNewMeal" v-model="selectedMealId">
+        <option disabled selected value="">Select a Meal</option>
+        <option v-for="meal in existingMeals" :key="meal.id" :value="meal.id">{{meal.name}}</option>
+      </select>      
     </div>
-    <div v-else>      
-      <button
-        v-if="mode !== ''"
-        @click="mode = ''"
-        class="rounded-full h-20 w-40 flex items-center justify-center bg-green-600 text-lg text-white mx-auto my-2"
-      >
-        Change Mode
-      </button>
-      <new-meal v-if="mode==='newMeal'"></new-meal>
-      <update-meal v-else-if="mode==='updateMeal'"></update-meal>
+    <div>      
+      <new-meal v-if="createNewMeal" @meal-created='mealCreated'></new-meal>
+      <update-meal v-else-if="selectedMealId !== null" :mealId='selectedMealId'></update-meal>
     </div>
   </div>
 </template>
@@ -33,14 +23,40 @@
 <script>
 import NewMeal from './NewMeal.vue';
 import UpdateMeal from './UpdateMeal.vue';
+import ConfigData from '../config/config.json';
+
 export default {
   components: { NewMeal, UpdateMeal },
   name: "MealCreation",
   data() {
     return {
-      mode: "",
-    };
+      createNewMeal: false,
+      existingMeals: [],
+      selectedMealId: null
+    }
   },
+  methods:{
+    // Take the meal created in NewMeal.vue and add it to the meals retrieved in created()
+    // Reset CreateNewMeal to false and set the SelectedMealId to the created meal id so the user can immediately add new ingredient
+    mealCreated(meal){
+      this.createNewMeal = false
+      this.selectedMealId = meal.id
+      this.existingMeals.push(meal)
+    }
+  },
+  created(){
+    // Retrieve and set all of the Meals for the selected user
+    fetch(ConfigData.backendUrl + "Meal/GetMealsForUser",
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: this.$store.getters.selectedUser
+      })
+      .then(resp => resp.json())
+      .then(data => this.existingMeals = data)
+  }
 };
 </script>
 
