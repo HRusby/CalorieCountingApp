@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import ConfigData from "../config/config.json";
 export default {
   name: "NewMeal",
   data() {
@@ -41,15 +42,24 @@ export default {
   methods: {
     submitForm() {
       let newMeal = {
-        name: this.mealName,
-        userId: this.$store.getters.selectedUser,
-        cookedWeight: this.weight,
-        cookedWeightMetricId: this.selectedMetric,
-        remainingWeight: null,
-        cookedOn: this.cookedOn
+        Name: this.mealName,
+        UserId: this.$store.getters.selectedUser,
+        CookedWeight: this.weight,
+        CookedWeightMetricId: this.selectedMetric,
+        RemainingWeight: null,
+        CookedOn: this.cookedOn
       }
-      console.log(newMeal)
-      // TODO: Push request to API
+
+      fetch(ConfigData.backendUrl + "Meal/AddNewMeal",
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newMeal)
+      })
+      .then(resp => console.log('resp: ' + resp))
+      // TODO: Push request to API 172.20.0.3
     },
   },
   computed: {
