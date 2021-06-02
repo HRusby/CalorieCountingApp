@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CalorieCountingApp.Domain;
 using System;
+using System.Text.Json;
 using CalorieCountingApp.Domain.Enums;
 using CalorieCountingApp.Data.Dao;
 using Microsoft.Extensions.Configuration;
@@ -22,14 +23,15 @@ namespace CalorieCountingApp.Controllers
 
         [HttpPost]
         [Route("AddNewMeal")]
-        public int AddNewMeal(
-            string name,
-            int userId,
-            double cookedWeight,
-            Metric cookedWeightMetricId,
-            double remainingWeight,
-            DateTime cookedOn)
+        public int AddNewMeal([FromBody]JsonElement data)
         {
+            string name = Convert.ToString(data.GetProperty("name"));
+            int userId = Convert.ToInt32(data.GetProperty("userId").ToString());
+            double cookedWeight = Convert.ToDouble(data.GetProperty("cookedWeight").ToString());
+            Metric cookedWeightMetricId = (Metric)Convert.ToInt32(data.GetProperty("cookedWeightMetricId").ToString());
+            double remainingWeight = Convert.ToDouble(data.GetProperty("remainingWeight").ToString());
+            DateTime cookedOn = Convert.ToDateTime(data.GetProperty("cookedOn").ToString());
+            Console.WriteLine("Request Received Name: "+name);
             // Returns the Id of the new record
             return dao.AddNewMeal(
                     name,
