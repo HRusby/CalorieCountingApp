@@ -1,12 +1,12 @@
 <template>
-  <div>Update Meal <p>{{mealId}}</p></div>  
+  <div>Update Meal <p>{{meal.id}}</p></div>  
 </template>
 
 <script>
 export default {
   name: "UpdateMeal",
   props: {
-    mealId: Number
+    meal: Object
   },
   data() {
     return {};
