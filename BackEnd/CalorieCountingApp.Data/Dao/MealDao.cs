@@ -12,23 +12,17 @@ namespace CalorieCountingApp.Data.Dao
             : base(connectionString)
         {}
 
-        public int AddNewMeal(
-            string name,
-            int userId,
-            double cookedWeight,
-            Metric cookedWeightMetricId,
-            double remainingWeight,
-            DateTime cookedOn)
+        public int AddNewMeal(Meal meal)
         {
             using (MySqlCommand cmd = new MySqlCommand("AddMeal", Connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 MySqlParameter generatedId = CreateOutputParameter("$GeneratedId", MySqlDbType.Int32);
-                cmd.Parameters.Add(new MySqlParameter("$Name", name));
-                cmd.Parameters.Add(new MySqlParameter("$UserId", userId));
-                cmd.Parameters.Add(new MySqlParameter("$CookedWeight", cookedWeight));
-                cmd.Parameters.Add(new MySqlParameter("$CookedWeightMetricId", (int)cookedWeightMetricId));
-                cmd.Parameters.Add(new MySqlParameter("$CookedOn", cookedOn));
+                cmd.Parameters.Add(new MySqlParameter("$Name", meal.Name));
+                cmd.Parameters.Add(new MySqlParameter("$UserId", meal.UserId));
+                cmd.Parameters.Add(new MySqlParameter("$CookedWeight", meal.CookedWeight));
+                cmd.Parameters.Add(new MySqlParameter("$CookedWeightMetricId", (int)meal.CookedWeightMetricId));
+                cmd.Parameters.Add(new MySqlParameter("$CookedOn", meal.CookedOn));
                 cmd.Parameters.Add(generatedId);
                 cmd.ExecuteNonQuery();
                 return Convert.ToInt32(generatedId.Value);

@@ -23,23 +23,12 @@ namespace CalorieCountingApp.Controllers
 
         [HttpPost]
         [Route("AddNewMeal")]
-        public int AddNewMeal([FromBody]JsonElement data)
+        public int AddNewMeal([FromBody]Meal meal)
         {
-            string name = Convert.ToString(data.GetProperty("name"));
-            int userId = Convert.ToInt32(data.GetProperty("userId").ToString());
-            double cookedWeight = Convert.ToDouble(data.GetProperty("cookedWeight").ToString());
-            Metric cookedWeightMetricId = (Metric)Convert.ToInt32(data.GetProperty("cookedWeightMetricId").ToString());
-            double remainingWeight = Convert.ToDouble(data.GetProperty("remainingWeight").ToString());
-            DateTime cookedOn = Convert.ToDateTime(data.GetProperty("cookedOn").ToString());
-            Console.WriteLine("Request Received Name: "+name);
+            Console.WriteLine("Request Received Name: "+meal.Name);
             // Returns the Id of the new record
             return dao.AddNewMeal(
-                    name,
-                    userId,
-                    cookedWeight,
-                    cookedWeightMetricId,
-                    remainingWeight,
-                    cookedOn);
+                    meal);
         }
 
         [HttpPost]

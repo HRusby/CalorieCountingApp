@@ -5,21 +5,21 @@ namespace CalorieCountingApp.Domain
 {
     public class Meal
     {
-        public int Id { get; private set; }
+        public int? Id { get; private set; }
         public string Name { get; private set; }
         public int UserId { get; private set; }
-        public double CookedWeight { get; private set; }
+        public double? CookedWeight { get; private set; }
         public Metric CookedWeightMetricId { get; private set; }
-        public double RemainingWeight { get; private set; }
+        public double? RemainingWeight { get; private set; }
         public DateTime CookedOn { get; private set; }
 
         public Meal(
-            int id,
+            int? id,
             string name,
             int userId,
-            double cookedWeight,
+            double? cookedWeight,
             Metric cookedWeightMetricId,
-            double remainingWeight,
+            double? remainingWeight,
             DateTime cookedOn)
         {
             Id = id;
