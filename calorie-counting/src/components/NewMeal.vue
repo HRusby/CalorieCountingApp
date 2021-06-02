@@ -42,12 +42,12 @@ export default {
   methods: {
     submitForm() {
       let newMeal = {
-        Name: this.mealName,
-        UserId: this.$store.getters.selectedUser,
-        CookedWeight: this.weight,
-        CookedWeightMetricId: this.selectedMetric,
-        RemainingWeight: null,
-        CookedOn: this.cookedOn
+        name: this.mealName,
+        userId: this.$store.getters.selectedUser,
+        cookedWeight: this.weight,
+        cookedWeightMetricId: this.selectedMetric,
+        remainingWeight: null,
+        cookedOn: this.cookedOn
       }
 
       fetch(ConfigData.backendUrl + "Meal/AddNewMeal",
@@ -58,8 +58,10 @@ export default {
         },
         body: JSON.stringify(newMeal)
       })
-      .then(resp => console.log('resp: ' + resp))
-      // TODO: Push request to API 172.20.0.3
+      .then(resp => resp.json())
+      .then(mealId => newMeal.id = mealId)
+      .then(() => this.$emit('mealCreated', newMeal))
+      // TODO: Push request to API
     },
   },
   computed: {
