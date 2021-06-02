@@ -24,9 +24,10 @@ services:
     restart: always
     depends_on: 
       - caloriecounting-db
+    links:
+      - caloriecounting-db
     ports:
-      - "5001:80"
-  
+      - "5001:80"  
 
   frontend: # Frontend Vue Service
       build: ./calorie-counting
@@ -35,6 +36,8 @@ services:
       image: caloriecounting-frontend-image
       container_name: caloriecounting-frontend
       restart: always
+      links:
+        - backend
       depends_on: 
         - caloriecounting-db
         - backend
