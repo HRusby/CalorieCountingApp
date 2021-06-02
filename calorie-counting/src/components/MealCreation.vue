@@ -4,7 +4,7 @@
     <br />
     <div class="container">
       <button
-        @click="createNewMeal = true; selectedMealId = null"
+        @click="createNewMeal = true; selectedMeal = null"
         class="rounded-full h-10 w-40 flex items-center justify-center bg-green-600 text-lg text-white mx-auto my-2"
       >Add New Meal</button>
 
@@ -14,8 +14,8 @@
       </select>      
     </div>
     <div>      
-      <new-meal v-if="createNewMeal" @meal-created='mealCreated'></new-meal>
-      <update-meal v-else-if="selectedMealId !== null" :mealId='selectedMealId'></update-meal>
+      <new-meal v-if="createNewMeal" @meal-created="mealCreated"></new-meal>
+      <update-meal v-else-if="selectedMealId !== null" :meal="selectedMeal"></update-meal>
     </div>
   </div>
 </template>
@@ -42,6 +42,15 @@ export default {
       this.createNewMeal = false
       this.selectedMealId = meal.id
       this.existingMeals.push(meal)
+    }
+  },
+  computed: {
+    selectedMeal(){
+      console.log('selectedMealId: ' + this.selectedMealId)
+      var meal = this.existingMeals.filter(obj => {return obj.id === this.selectedMealId})[0]
+      console.log('selectedMeal')
+      console.log(meal)
+      return meal
     }
   },
   created(){
