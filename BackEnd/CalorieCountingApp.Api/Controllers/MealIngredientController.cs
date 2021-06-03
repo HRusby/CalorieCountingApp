@@ -23,7 +23,7 @@ namespace BackEnd.CalorieCountingApp.Api.Controllers
         public int AddNewMealIngredient(
             int mealId,
             int ingredientId,
-            Metric metricId,
+            MetricId metricId,
             double quantity)
         {
             // Returns the Id of the new record

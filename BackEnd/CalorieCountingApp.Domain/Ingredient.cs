@@ -8,12 +8,12 @@ namespace CalorieCountingApp.Domain
         public int Id {get;private set;}
         public string Name {get; private set;}
         public decimal CaloriesPerMetric{get; private set;}
-        public Metric MetricId {get; private set;}
+        public MetricId MetricId {get; private set;}
 
         public Ingredient(int id, 
             string name, 
             decimal caloriesPerMetric, 
-            Metric metricId)
+            MetricId metricId)
         {
             Id = id;
             Name = name;

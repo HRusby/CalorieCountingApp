@@ -23,7 +23,7 @@ namespace CalorieCountingApp.Controllers
         public int AddNewIngredient(
             string name,
             decimal caloriesPerMetric,
-            Metric metricId)
+            MetricId metricId)
         {
             return dao.AddNewIngredient(
                 name,

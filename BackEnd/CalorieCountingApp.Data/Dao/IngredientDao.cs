@@ -15,7 +15,7 @@ namespace CalorieCountingApp.Data.Dao
         public int AddNewIngredient(
             string name,
             decimal caloriesPerMetric,
-            Metric metricId)
+            MetricId metricId)
         {
             using (MySqlCommand cmd = new MySqlCommand("AddIngredient", Connection))
             {

@@ -25,7 +25,7 @@ namespace CalorieCountingApp.Controllers
         public int AddNewRecord(
             int userId,
             int ingredientId,
-            Metric metricId,
+            MetricId metricId,
             double quantity,
             DateTime dateTime)
         {

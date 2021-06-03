@@ -16,7 +16,7 @@ namespace CalorieCountingApp.Data.Dao
         public int AddNewTrackingRecord(
             int userId,
             int ingredientId,
-            Metric metricId,
+            MetricId metricId,
             double quantity,
             DateTime dateTime)
         {

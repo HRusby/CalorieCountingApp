@@ -1,6 +1,6 @@
 namespace CalorieCountingApp.Domain.Enums
 {
-    public enum Metric
+    public enum MetricId
     {
         Gram = 1,
         Kilogram = 2,

@@ -69,7 +69,7 @@ namespace CalorieCountingApp.Data.Dao
                         rdr.GetString("Name"),
                         rdr.GetInt32("UserId"),
                         rdr.GetDouble("CookedWeight"),
-                        (Metric)rdr.GetInt32("CookedWeightMetricId"),
+                        (MetricId)rdr.GetInt32("CookedWeightMetricId"),
                         rdr.GetDouble("RemainingWeight"),
                         rdr.GetDateTime("CookedOn")
                     );

@@ -16,7 +16,7 @@ namespace BackEnd.CalorieCountingApp.Data.Dao
         public int AddNewMealIngredient(
             int mealId,
             int ingredientId,
-            Metric metricId,
+            MetricId metricId,
             double quantity)
         {
             using (MySqlCommand cmd = new MySqlCommand("AddMealIngredient", Connection))
