@@ -3,6 +3,7 @@ using CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain.Enums;
 using CalorieCountingApp.Data.Dao;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace CalorieCountingApp.Controllers
 {
@@ -41,6 +42,12 @@ namespace CalorieCountingApp.Controllers
         [Route("DeleteIngredient")]
         public bool DeleteIngredient(int ingredientId){
             return dao.DeleteIngredient(ingredientId);
+        }
+
+        [HttpPost]
+        [Route("GetIngredients")]
+        public List<Ingredient> GetIngredients(){
+            return dao.GetIngredients();
         }
     }
 }

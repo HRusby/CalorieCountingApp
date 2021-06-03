@@ -26,6 +26,7 @@ SOURCE StoredProcs/Selection/CheckLogin_Sp.sql
 SOURCE StoredProcs/Selection/GetMealsForUser_Sp.sql
 SOURCE StoredProcs/Selection/GetMetrics.sql
 SOURCE StoredProcs/Selection/GetMealIngredientsForMealId.sql
+SOURCE StoredProcs/Selection/GetIngredients.sql
 
 -- Updation Procs;
 SOURCE StoredProcs/Updation/UpdateIngredient_Sp.sql
