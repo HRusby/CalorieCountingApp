@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import ConfigData from "../config/config.json";
-import MetricSelect from "./MetricSelect.vue";
+import ConfigData from "../../config/config.json";
+import MetricSelect from "../MetricSelect.vue";
 export default {
   name: "UpdateMeal",
   components: { MetricSelect },

@@ -23,7 +23,7 @@
 <script>
 import NewMeal from './NewMeal.vue';
 import UpdateMeal from './UpdateMeal.vue';
-import ConfigData from '../config/config.json';
+import ConfigData from '../../config/config.json';
 
 export default {
   components: { NewMeal, UpdateMeal },

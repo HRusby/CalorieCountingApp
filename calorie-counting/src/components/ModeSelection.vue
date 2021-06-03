@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import MealCreation from "./MealCreation.vue";
+import MealCreation from "./Meal/MealCreation.vue";
 import Tracking from "./Tracking.vue";
 export default {
   components: { MealCreation, Tracking },
