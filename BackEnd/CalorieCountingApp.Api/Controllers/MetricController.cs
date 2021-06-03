@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 namespace BackEnd.CalorieCountingApp.Api.Controllers
 {
     [ApiController]
-    [Route("Ingredient")]
+    [Route("Metric")]
     public class MetricController
     {
         private readonly MetricDao dao;
