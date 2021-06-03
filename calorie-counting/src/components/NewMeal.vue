@@ -25,7 +25,6 @@
         title="Cooked On"
         type="date"
         v-model="cookedOn"
-        :defaultValue="todaysDateString"
       />
       <br />
       <button type="submit">Submit</button>
@@ -45,7 +44,7 @@ export default {
       mealName: "",
       weight: null,
       selectedMetricId: NaN,
-      cookedOn: null,
+      cookedOn: new Date().toISOString().substr(0,10),
     };
   },
   methods: {
@@ -70,23 +69,6 @@ export default {
         .then((mealId) => (newMeal.id = mealId))
         .then(() => this.$emit("mealCreated", newMeal));
     }
-  },
-  computed: {
-    todaysDateString() {
-      var date = new Date();
-      var year = date.getFullYear();
-      var month = date.getMonth() + 1;
-      var dt = date.getDate();
-
-      if (dt < 10) {
-        dt = "0" + dt;
-      }
-      if (month < 10) {
-        month = "0" + month;
-      }
-
-      return year + "-" + month + "-" + dt;
-    },
   },
 };
 </script>
