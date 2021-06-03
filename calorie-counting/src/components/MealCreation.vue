@@ -2,13 +2,13 @@
   <div class="flex space-y-2 grid grid-cols-1 text-center">
     <h1 class="mx-auto">Meal Creation</h1>
     <br />
-    <div class="container">
+    <div v-if="!createNewMeal && selectedMealId===null" class="container">
       <button
         @click="createNewMeal = true; selectedMeal = null"
         class="rounded-full h-10 w-40 flex items-center justify-center bg-green-600 text-lg text-white mx-auto my-2"
       >Add New Meal</button>
 
-      <select v-if="!createNewMeal" v-model="selectedMealId">
+      <select v-model="selectedMealId">
         <option disabled :value="null">Select a Meal</option>
         <option v-for="meal in existingMeals" :key="meal.id" :value="meal.id">{{meal.name}}</option>
       </select>      
