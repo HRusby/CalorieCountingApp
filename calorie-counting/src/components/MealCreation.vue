@@ -15,7 +15,7 @@
     </div>
     <div>      
       <new-meal v-if="createNewMeal" @meal-created="mealCreated"></new-meal>
-      <update-meal v-else-if="selectedMealId !== null" :meal="selectedMeal"></update-meal>
+      <update-meal v-else-if="selectedMealId !== null" :mealToUpdate="selectedMeal" @updatedMeal="updateMeal"></update-meal>
     </div>
   </div>
 </template>
@@ -42,15 +42,16 @@ export default {
       this.createNewMeal = false
       this.selectedMealId = meal.id
       this.existingMeals.push(meal)
+    },
+    updateMeal(updatedMeal){
+      var idx = this.existingMeals.findIndex(x=>x.id === updatedMeal.id)
+      this.existingMeals[idx] = updatedMeal
     }
   },
   computed: {
-    selectedMeal(){
-      console.log('selectedMealId: ' + this.selectedMealId)
+    selectedMeal() {      
       var meal = this.existingMeals.filter(obj => {return obj.id === this.selectedMealId})[0]
-      console.log('selectedMeal')
-      console.log(meal)
-      return meal
+      return meal      
     }
   },
   created(){

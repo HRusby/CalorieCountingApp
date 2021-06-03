@@ -4,6 +4,7 @@
     <p>{{ meal.id }}</p>
     <p>{{ meal.name }}</p>
     <p>{{meal.cookedWeight}}</p>
+    <metric-select :modelValue="meal.cookedWeightMetricId" @update:modelValue="(val) => {updateMeal('metric', val)}" ></metric-select>
     <p>{{meal.cookedWeightMetricId}}</p>
     <p>{{meal.remainingWeight}}</p>
     <p>{{meal.cookedOn}}</p>
@@ -11,15 +12,28 @@
 </template>
 
 <script>
+import MetricSelect from './MetricSelect.vue';
 export default {
   name: "UpdateMeal",
+  components: { MetricSelect },
   props: {
-    meal: Object,
+    mealToUpdate: {
+      required: true,
+      type: Object
+    }
   },
-  data() {
-    return {};
+  methods: {
+    updateMeal(propertyName, newValue){
+      var m = this.meal
+      m[propertyName] = newValue
+      this.$emit('updatedMeal', m)
+    }
   },
-  methods: {},
+  computed: {
+    meal() {
+      return this.mealToUpdate
+    }
+  }
 };
 </script>
 

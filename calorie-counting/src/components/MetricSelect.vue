@@ -12,10 +12,10 @@ import ConfigData from "../config/config.json";
 export default {
   name: "MetricSelect",
   props: {
-    value: {
-      required: false,
+    modelValue: {
+      required: true,
       type: Number,
-    },
+    }
   },
   data() {
     return {
@@ -24,8 +24,8 @@ export default {
   },
   computed: {
     selectedMetric: {
-        get() {return this.value},
-        set(newMetric){this.$emit("input", newMetric)}
+        get() {return this.modelValue},
+        set(newMetric){this.$emit("update:modelValue", newMetric)}
     }
   },
   created() {
