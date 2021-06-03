@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BackEnd.CalorieCountingApp.Data.Dao;
 using CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain.Enums;
@@ -12,7 +13,7 @@ namespace BackEnd.CalorieCountingApp.Api.Controllers
     {
         private readonly MealIngredientDao dao;
 
-         public MealIngredientController(IConfiguration configuration)
+        public MealIngredientController(IConfiguration configuration)
         {
             string connString = configuration.GetValue<string>("ConnectionStrings:CalorieCounting");
             dao = new MealIngredientDao(connString);
@@ -44,6 +45,12 @@ namespace BackEnd.CalorieCountingApp.Api.Controllers
         [Route("DeleteMealIngredient")]
         public bool DeleteMealIngredient(int ingredientId){
             return dao.DeleteMealIngredient(ingredientId);
+        }
+
+        [HttpPost]
+        [Route("GetMealIngredientsForMealId")]
+        public List<MealIngredient> GetMealIngredientsForMealId(int mealId){
+            return dao.GetMealIngredientsForMealId(mealId);
         }
     }
 }

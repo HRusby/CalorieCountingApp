@@ -12,16 +12,16 @@ namespace CalorieCountingApp.Domain
 
         public MealIngredient(
             int id,
-            int ingredientId,
-            double quantity,
-            MetricId metricId,
-            int mealId)
+            int mealId,
+            int ingredientId,            
+            MetricId metricId,            
+            double quantity)
         {
             Id = id;
-            IngredientId = ingredientId;
-            Quantity = quantity;
-            MetricId = metricId;
             MealId = mealId;
+            IngredientId = ingredientId;
+            MetricId = metricId;            
+            Quantity = quantity;            
         }
     }
 }

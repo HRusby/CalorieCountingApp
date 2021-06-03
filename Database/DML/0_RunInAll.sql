@@ -24,6 +24,8 @@ SOURCE StoredProcs/Insertion/AddUser_Sp.sql
 SOURCE StoredProcs/Selection/CheckLogin_Sp.sql
 -- SOURCE StoredProcs/Selection/GetAllUserTrackingRecords.sql
 SOURCE StoredProcs/Selection/GetMealsForUser_Sp.sql
+SOURCE StoredProcs/Selection/GetMetrics.sql
+SOURCE StoredProcs/Selection/GetMealIngredientsForMealId.sql
 
 -- Updation Procs;
 SOURCE StoredProcs/Updation/UpdateIngredient_Sp.sql
