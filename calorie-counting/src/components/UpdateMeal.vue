@@ -5,7 +5,6 @@
     <p>{{ meal.name }}</p>
     <p>{{meal.cookedWeight}}</p>
     <metric-select :modelValue="meal.cookedWeightMetricId" @update:modelValue="(val) => {updateMeal('cookedWeightMetricId', val)}" ></metric-select>
-    <p>{{meal.cookedWeightMetricId}}</p>
     <p>{{meal.remainingWeight}}</p>
     <p>{{meal.cookedOn}}</p>
   </div>
