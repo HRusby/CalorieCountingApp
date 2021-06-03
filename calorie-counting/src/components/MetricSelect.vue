@@ -1,6 +1,6 @@
 <template>
   <select title="Metric" v-model="selectedMetric">
-    <option disabled :value="null">Metric</option>
+    <option disabled :value="NaN">Metric</option>
     <option v-for="metric in metrics" :key="metric.id" :value="metric.id">
       {{ metric.shortName }}
     </option>

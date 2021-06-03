@@ -13,9 +13,11 @@
         type="number"
         title="Weight"
         placeholder="Weight"
+        min="0"
+        step="0.01"
         v-model="weight"
       />
-      <metric-select :value="selectedMetricId" @input="(newMetric) => {selectedMetricId = newMetric}" />
+      <metric-select v-model="selectedMetricId"/>
       <br />
       <label for="CookedOn">Cooked On: </label>
       <input
@@ -42,7 +44,7 @@ export default {
       metrics: [],
       mealName: "",
       weight: null,
-      selectedMetricId: null,
+      selectedMetricId: NaN,
       cookedOn: null,
     };
   },
