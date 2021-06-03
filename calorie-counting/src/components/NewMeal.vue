@@ -2,13 +2,23 @@
   <div class="text-center">
     <h1>New Meal</h1>
     <form @submit.prevent="submitForm">
-      <input type="text" title="Meal Name" placeholder="Meal Name" v-model="mealName" />
+      <input
+        type="text"
+        title="Meal Name"
+        placeholder="Meal Name"
+        v-model="mealName"
+      />
       <br />
-      <input type="number" title="Weight" placeholder="Weight" v-model="weight"/>
+      <input
+        type="number"
+        title="Weight"
+        placeholder="Weight"
+        v-model="weight"
+      />
       <select title="Metric" v-model="selectedMetric">
-        <option value="" disabled selected>Metric</option>
+        <option disabled :value="null">Metric</option>
         <option v-for="metric in metrics" :key="metric.id" :value="metric.id">
-          {{ metric.shortname }}
+          {{ metric.shortName }}
         </option>
       </select>
       <br />
@@ -20,8 +30,8 @@
         v-model="cookedOn"
         :defaultValue="todaysDateString"
       />
-      <br/>
-      <button type='submit' >Submit</button>
+      <br />
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>
@@ -33,10 +43,10 @@ export default {
   data() {
     return {
       metrics: [],
-      mealName: '',
+      mealName: "",
       weight: null,
       selectedMetric: null,
-      cookedOn: null
+      cookedOn: null,
     };
   },
   methods: {
@@ -47,46 +57,49 @@ export default {
         cookedWeight: this.weight,
         cookedWeightMetricId: this.selectedMetric,
         remainingWeight: null,
-        cookedOn: this.cookedOn
-      }
+        cookedOn: this.cookedOn,
+      };
 
-      fetch(ConfigData.backendUrl + "Meal/AddNewMeal",
-      {
-        method: 'POST',
+      fetch(ConfigData.backendUrl + "Meal/AddNewMeal", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newMeal)
+        body: JSON.stringify(newMeal),
       })
-      .then(resp => resp.json())
-      .then(mealId => newMeal.id = mealId)
-      .then(() => this.$emit('mealCreated', newMeal))
+        .then((resp) => resp.json())
+        .then((mealId) => (newMeal.id = mealId))
+        .then(() => this.$emit("mealCreated", newMeal));
       // TODO: Push request to API
     },
   },
   computed: {
     todaysDateString() {
-      var date = new Date()
-      var year = date.getFullYear()
-      var month = date.getMonth() + 1
-      var dt = date.getDate()
+      var date = new Date();
+      var year = date.getFullYear();
+      var month = date.getMonth() + 1;
+      var dt = date.getDate();
 
       if (dt < 10) {
-        dt = "0" + dt
+        dt = "0" + dt;
       }
       if (month < 10) {
-        month = "0" + month
+        month = "0" + month;
       }
 
-      return year + "-" + month + "-" + dt
+      return year + "-" + month + "-" + dt;
     },
   },
   created() {
     // TODO: Request metrics from API
-    this.metrics = [
-      { id: 1, name: "Gram", shortname: "g" },
-      { id: 2, name: "Kilogram", shortname: "kg" },
-    ];
+    fetch(ConfigData.backendUrl + "Metric/GetMetrics", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => this.metrics=data);
   },
 };
 </script>

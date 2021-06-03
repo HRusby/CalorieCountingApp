@@ -9,7 +9,7 @@
       >Add New Meal</button>
 
       <select v-if="!createNewMeal" v-model="selectedMealId">
-        <option disabled selected value="">Select a Meal</option>
+        <option disabled :value="null">Select a Meal</option>
         <option v-for="meal in existingMeals" :key="meal.id" :value="meal.id">{{meal.name}}</option>
       </select>      
     </div>
