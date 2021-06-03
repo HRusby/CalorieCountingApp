@@ -39,6 +39,7 @@ namespace CalorieCountingApp.Data.Dao
                 cmd.Parameters.Add(new MySqlParameter("$CookedWeight", updatedMeal.CookedWeight));
                 cmd.Parameters.Add(new MySqlParameter("$CookedWeightMetricId", (int)updatedMeal.CookedWeightMetricId));
                 cmd.Parameters.Add(new MySqlParameter("$RemainingWeight", updatedMeal.RemainingWeight));
+                cmd.Parameters.Add(new MySqlParameter("$CookedOn", updatedMeal.CookedOn));
                 int affectedRows = cmd.ExecuteNonQuery();
                 return affectedRows == 1;
             }

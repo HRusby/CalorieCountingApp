@@ -3,7 +3,8 @@ CREATE PROCEDURE UpdateMeal (
     IN $Name VARCHAR(255),
     IN $CookedWeight VARCHAR(255),
     IN $CookedWeightMetricId VARCHAR(255),
-    IN $RemainingWeight DOUBLE
+    IN $RemainingWeight DOUBLE,
+    IN $CookedOn DATETIME
 )
 BEGIN
     -- Update Some Meal, UserId, Id and CookedOn should never change
@@ -14,6 +15,7 @@ BEGIN
     Name = IFNULL($Name, Name),
     CookedWeight = IFNULL($CookedWeight, CookedWeight),
     CookedWeightMetricId = IFNULL($CookedWeightMetricId, CookedWeightMetricId),
-    RemainingWeight = IFNULL($RemainingWeight, RemainingWeight)
+    RemainingWeight = IFNULL($RemainingWeight, RemainingWeight),
+    CookedOn = IFNULL($CookedOn, CookedOn)
     WHERE Id = $MealId;
 END;
