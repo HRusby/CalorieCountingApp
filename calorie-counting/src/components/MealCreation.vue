@@ -66,6 +66,10 @@ export default {
       })
       .then(resp => resp.json())
       .then(data => this.existingMeals = data)
+      // Convert DateTime to Date
+      .then(() => this.existingMeals.forEach(element => {
+        element.cookedOn = element.cookedOn.substr(0,10)
+      }))
   }
 };
 </script>
