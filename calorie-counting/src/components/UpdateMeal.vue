@@ -4,7 +4,7 @@
     <p>{{ meal.id }}</p>
     <p>{{ meal.name }}</p>
     <p>{{meal.cookedWeight}}</p>
-    <metric-select :modelValue="meal.cookedWeightMetricId" @update:modelValue="(val) => {updateMeal('metric', val)}" ></metric-select>
+    <metric-select :modelValue="meal.cookedWeightMetricId" @update:modelValue="(val) => {updateMeal('cookedWeightMetricId', val)}" ></metric-select>
     <p>{{meal.cookedWeightMetricId}}</p>
     <p>{{meal.remainingWeight}}</p>
     <p>{{meal.cookedOn}}</p>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import ConfigData from "../config/config.json";
 import MetricSelect from './MetricSelect.vue';
 export default {
   name: "UpdateMeal",
@@ -24,9 +25,20 @@ export default {
   },
   methods: {
     updateMeal(propertyName, newValue){
-      var m = this.meal
-      m[propertyName] = newValue
-      this.$emit('updatedMeal', m)
+      this.meal[propertyName] = newValue
+      this.$emit('updatedMeal', this.meal)
+      this.pushToApi()
+    },
+    pushToApi(){
+      fetch(ConfigData.backendUrl + "Meal/UpdateMeal", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.meal)
+      })
+      .then((resp) => resp.json())
+      .then((data) => console.log('data: '+data));
     }
   },
   computed: {
