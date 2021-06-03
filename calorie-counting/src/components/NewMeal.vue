@@ -15,12 +15,7 @@
         placeholder="Weight"
         v-model="weight"
       />
-      <select title="Metric" v-model="selectedMetric">
-        <option disabled :value="null">Metric</option>
-        <option v-for="metric in metrics" :key="metric.id" :value="metric.id">
-          {{ metric.shortName }}
-        </option>
-      </select>
+      <metric-select :value="selectedMetricId" @input="(newMetric) => {selectedMetricId = newMetric}" />
       <br />
       <label for="CookedOn">Cooked On: </label>
       <input
@@ -38,14 +33,16 @@
 
 <script>
 import ConfigData from "../config/config.json";
+import MetricSelect from './MetricSelect.vue';
 export default {
+  components: { MetricSelect },
   name: "NewMeal",
   data() {
     return {
       metrics: [],
       mealName: "",
       weight: null,
-      selectedMetric: null,
+      selectedMetricId: null,
       cookedOn: null,
     };
   },
@@ -55,7 +52,7 @@ export default {
         name: this.mealName,
         userId: this.$store.getters.selectedUser,
         cookedWeight: this.weight,
-        cookedWeightMetricId: this.selectedMetric,
+        cookedWeightMetricId: this.selectedMetricId,
         remainingWeight: null,
         cookedOn: this.cookedOn,
       };
@@ -70,8 +67,7 @@ export default {
         .then((resp) => resp.json())
         .then((mealId) => (newMeal.id = mealId))
         .then(() => this.$emit("mealCreated", newMeal));
-      // TODO: Push request to API
-    },
+    }
   },
   computed: {
     todaysDateString() {
@@ -89,17 +85,6 @@ export default {
 
       return year + "-" + month + "-" + dt;
     },
-  },
-  created() {
-    // TODO: Request metrics from API
-    fetch(ConfigData.backendUrl + "Metric/GetMetrics", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => this.metrics=data);
   },
 };
 </script>

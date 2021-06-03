@@ -4,7 +4,7 @@
     <br />
     <div v-if="!createNewMeal && selectedMealId===null" class="container">
       <button
-        @click="createNewMeal = true; selectedMeal = null"
+        @click="createNewMeal = true; selectedMealId = null"
         class="rounded-full h-10 w-40 flex items-center justify-center bg-green-600 text-lg text-white mx-auto my-2"
       >Add New Meal</button>
 
