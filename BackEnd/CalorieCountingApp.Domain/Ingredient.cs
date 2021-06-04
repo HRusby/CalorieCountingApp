@@ -5,12 +5,12 @@ namespace CalorieCountingApp.Domain
 {
     public class Ingredient
     {
-        public int Id {get;private set;}
+        public int? Id {get;private set;}
         public string Name {get; private set;}
         public decimal CaloriesPerMetric{get; private set;}
         public MetricId MetricId {get; private set;}
 
-        public Ingredient(int id, 
+        public Ingredient(int? id, 
             string name, 
             decimal caloriesPerMetric, 
             MetricId metricId)

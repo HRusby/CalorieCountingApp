@@ -21,15 +21,9 @@ namespace CalorieCountingApp.Controllers
 
         [HttpPost]
         [Route("AddNewIngredient")]
-        public int AddNewIngredient(
-            string name,
-            decimal caloriesPerMetric,
-            MetricId metricId)
+        public int AddNewIngredient(Ingredient newIngredient)
         {
-            return dao.AddNewIngredient(
-                name,
-                caloriesPerMetric,
-                metricId);
+            return dao.AddNewIngredient(newIngredient);
         }
 
         [HttpPost]
