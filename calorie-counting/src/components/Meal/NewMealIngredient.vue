@@ -9,7 +9,7 @@
 
 <script>
 
-import IngredientSelect from '../IngredientSelect.vue'
+import IngredientSelect from '../Ingredient/IngredientSelect.vue'
 import MetricSelect from '../MetricSelect.vue'
 export default {
   components: { MetricSelect, IngredientSelect },
