@@ -22,17 +22,10 @@ namespace BackEnd.CalorieCountingApp.Api.Controllers
         [HttpPost]
         [Route("AddNewMealIngredient")]
         public int AddNewMealIngredient(
-            int mealId,
-            int ingredientId,
-            MetricId metricId,
-            double quantity)
+            MealIngredient mealIngredient)
         {
             // Returns the Id of the new record
-            return dao.AddNewMealIngredient(
-                    mealId,
-                    ingredientId,
-                    metricId,
-                    quantity);
+            return dao.AddNewMealIngredient(mealIngredient);
         }
 
         [HttpPost]

@@ -15,19 +15,16 @@ namespace BackEnd.CalorieCountingApp.Data.Dao
         {}
 
         public int AddNewMealIngredient(
-            int mealId,
-            int ingredientId,
-            MetricId metricId,
-            double quantity)
+            MealIngredient ingredient)
         {
             using (MySqlCommand cmd = new MySqlCommand("AddMealIngredient", Connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 MySqlParameter generatedId = CreateOutputParameter("$GeneratedId", MySqlDbType.Int32);
-                cmd.Parameters.Add(new MySqlParameter("$MealId", mealId));
-                cmd.Parameters.Add(new MySqlParameter("$IngredientId", ingredientId));
-                cmd.Parameters.Add(new MySqlParameter("$MetricId", (int)metricId));
-                cmd.Parameters.Add(new MySqlParameter("$Quantity", quantity));
+                cmd.Parameters.Add(new MySqlParameter("$MealId", ingredient.MealId));
+                cmd.Parameters.Add(new MySqlParameter("$IngredientId", ingredient.IngredientId));
+                cmd.Parameters.Add(new MySqlParameter("$MetricId", (int)ingredient.MetricId));
+                cmd.Parameters.Add(new MySqlParameter("$Quantity", ingredient.Quantity));
                 cmd.Parameters.Add(generatedId);
                 cmd.ExecuteNonQuery();
                 return Convert.ToInt32(generatedId.Value);
