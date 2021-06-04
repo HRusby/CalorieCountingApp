@@ -40,7 +40,7 @@ namespace CalorieCountingApp.Controllers
 
         [HttpPost]
         [Route("DeleteMeal")]
-        public bool DeleteMeal(int mealId){
+        public bool DeleteMeal([FromBody]int mealId){
             return dao.DeleteMeal(mealId);
         }
 

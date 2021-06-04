@@ -46,7 +46,7 @@ namespace CalorieCountingApp.Controllers
 
         [HttpPost]
         [Route("DeleteRecord")]
-        public bool DeleteRecord(int recordId){
+        public bool DeleteRecord([FromBody]int recordId){
             return dao.DeleteTrackingRecord(recordId);
         }
     }

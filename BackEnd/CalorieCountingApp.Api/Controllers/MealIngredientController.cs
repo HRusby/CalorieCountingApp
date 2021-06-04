@@ -43,13 +43,13 @@ namespace BackEnd.CalorieCountingApp.Api.Controllers
 
         [HttpPost]
         [Route("DeleteMealIngredient")]
-        public bool DeleteMealIngredient(int ingredientId){
+        public bool DeleteMealIngredient([FromBody]int ingredientId){
             return dao.DeleteMealIngredient(ingredientId);
         }
 
         [HttpPost]
         [Route("GetMealIngredientsForMealId")]
-        public List<MealIngredient> GetMealIngredientsForMealId(int mealId){
+        public List<MealIngredient> GetMealIngredientsForMealId([FromBody]int mealId){
             return dao.GetMealIngredientsForMealId(mealId);
         }
     }
