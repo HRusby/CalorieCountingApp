@@ -58,20 +58,20 @@ namespace BackEnd.CalorieCountingApp.Data.Dao
             }
         }
 
-        public List<MealIngredient> GetMealIngredientsForMealId(int mealId){
+        public List<DisplayableMealIngredient> GetMealIngredientsForMealId(int mealId){
             using(MySqlCommand cmd = new MySqlCommand("GetMealIngredientsForMealId", Connection)){
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new MySqlParameter("$MealId", mealId));
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
-                List<MealIngredient> mealIngredients = new List<MealIngredient>();
+                List<DisplayableMealIngredient> mealIngredients = new List<DisplayableMealIngredient>();
                 while(rdr.Read()){
                     // Create MealIngredient
-                    MealIngredient meal = new MealIngredient(
+                    DisplayableMealIngredient meal = new DisplayableMealIngredient(
                         rdr.GetInt32("Id"),
                         rdr.GetInt32("MealId"),
-                        rdr.GetInt32("IngredientId"),
-                        (MetricId)rdr.GetInt32("MetricId"),
+                        rdr.GetString("IngredientName"),
+                        rdr.GetString("MetricShortName"),
                         rdr.GetDouble("Quantity")
                     );
                     mealIngredients.Add(meal);

@@ -49,7 +49,7 @@ namespace BackEnd.CalorieCountingApp.Api.Controllers
 
         [HttpPost]
         [Route("GetMealIngredientsForMealId")]
-        public List<MealIngredient> GetMealIngredientsForMealId([FromBody]int mealId){
+        public List<DisplayableMealIngredient> GetMealIngredientsForMealId([FromBody]int mealId){
             return dao.GetMealIngredientsForMealId(mealId);
         }
     }
