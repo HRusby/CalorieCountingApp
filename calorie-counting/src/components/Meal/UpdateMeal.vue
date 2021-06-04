@@ -24,15 +24,17 @@
       <input type="date" title="Cooked On" v-model="meal.cookedOn" />
       <button type="submit">Submit Changes</button>
     </form>
+    <meal-ingredients :mealId="meal.id"/>
   </div>
 </template>
 
 <script>
 import ConfigData from "../../config/config.json";
 import MetricSelect from "../MetricSelect.vue";
+import MealIngredients from './MealIngredients.vue';
 export default {
   name: "UpdateMeal",
-  components: { MetricSelect },
+  components: { MetricSelect, MealIngredients },
   props: {
     mealToUpdate: {
       required: true,
