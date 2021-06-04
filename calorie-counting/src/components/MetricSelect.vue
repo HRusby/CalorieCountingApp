@@ -1,9 +1,12 @@
 <template>
   <select title="Metric" v-model="selectedMetric">
-    <option disabled :value="NaN">Metric</option>
-    <option v-for="metric in metrics" :key="metric.id" :value="metric.id">
-      {{ metric.shortName }}
-    </option>
+    <option disabled :value="NaN" v-text="'Metric'" />
+    <option
+      v-for="metric in metrics"
+      :key="metric.id"
+      :value="metric.id"
+      v-text="metric.shortName"
+    />
   </select>
 </template>
 
@@ -15,18 +18,22 @@ export default {
     modelValue: {
       required: true,
       type: Number,
-    }
+    },
   },
   data() {
     return {
-      metrics: []
+      metrics: [],
     };
   },
   computed: {
     selectedMetric: {
-        get() {return this.modelValue},
-        set(newMetric){this.$emit("update:modelValue", newMetric)}
-    }
+      get() {
+        return this.modelValue;
+      },
+      set(newMetric) {
+        this.$emit("update:modelValue", newMetric);
+      },
+    },
   },
   created() {
     fetch(ConfigData.backendUrl + "Metric/GetMetrics", {

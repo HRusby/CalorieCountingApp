@@ -33,7 +33,6 @@
               aria-labelledby="modal-headline"
               @click.stop
             >
-              {{ heading }}
               <slot></slot>
             </div>
           </transition>
@@ -47,10 +46,6 @@
 export default {
   name: "ModalDialogue",
   props: {
-    heading: {
-      required: true,
-      type: String,
-    },
     modelValue: {
       required: true,
       type: Boolean,

@@ -6,7 +6,7 @@
         v-for="ingredient in ingredients"
         :key="ingredient.id"
         :value="ingredient.id"
-        v-html="ingredient.name"
+        v-text="ingredient.name"
       />
       <option
         :value="NaN"
@@ -14,8 +14,8 @@
         v-text="'Add New Ingredient'"
       />
     </select>
-    <modal-dialogue heading="newIngredient" v-model="showNewIngredientModal">
-      <new-ingredient @ingredientCreated="selectNewIngredient"/>
+    <modal-dialogue v-model="showNewIngredientModal">
+      <new-ingredient @ingredientCreated="selectNewIngredient" />
     </modal-dialogue>
   </span>
 </template>
@@ -41,13 +41,10 @@ export default {
     };
   },
   methods: {
-    addNewIngredient() {
-      console.log("Submitting Form");
+    selectNewIngredient(newIngredient) {
+      this.ingredients.push(newIngredient);
+      this.selectedIngredientId = newIngredient.id;
     },
-    selectNewIngredient(newIngredient){
-        this.ingredients.push(newIngredient)
-        this.selectedIngredientId = newIngredient.id
-    }
   },
   computed: {
     selectedIngredientId: {
