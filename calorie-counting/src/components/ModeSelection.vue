@@ -9,23 +9,23 @@
       </button>
       <button
         class="rounded-full h-20 w-40 flex items-center justify-center bg-green-600 text-lg text-white"
-        @click="setMode('calorieCounting')"
+        @click="setMode('calorieTracking')"
       >
-        Calorie Counting
+        Calorie Tracking
       </button>
     </div>
     <div v-else>
       <meal-creation v-if="selectedMode === 'mealCreation'"></meal-creation>
-      <tracking v-if="selectedMode === 'calorieCounting'"></tracking>
+      <calorie-tracking v-if="selectedMode === 'calorieTracking'"></calorie-tracking>
     </div>
   </div>
 </template>
 
 <script>
 import MealCreation from "./Meal/MealCreation.vue";
-import Tracking from "./Tracking.vue";
+import CalorieTracking from "./CalorieTracking.vue";
 export default {
-  components: { MealCreation, Tracking },
+  components: { MealCreation, CalorieTracking },
   name: "ModeSelection",
   props: {},
   methods: {
