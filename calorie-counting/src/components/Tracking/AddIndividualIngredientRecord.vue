@@ -41,9 +41,15 @@ export default {
                 body: JSON.stringify(record),
             })
             .then((resp) => resp.json())
-            .then((data) => console.log("data: " + data));
+            .then(data => {
+                if(data){
+                    this.$emit('addRecord', record)
+                }else{
+                    alert('Adding Individual Ingredient Unsuccessful')
+                }
+            });
 
-            //this.$emit('addRecord', record)
+            
         }
     }
 }
