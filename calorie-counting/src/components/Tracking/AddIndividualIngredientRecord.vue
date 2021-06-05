@@ -28,7 +28,7 @@ export default {
             let record = {
                 mealOrIngredientId: this.mealOrIngredientId,
                 userId: this.$store.getters.selectedUser,
-                typeId: 1,
+                typeId: 2,
                 quantity: this.quantity,
                 dateTime: this.dateTime
             }
