@@ -41,11 +41,10 @@
     </table>
 
     <modal-dialogue v-model="showAddRecord">
-      <add-individual-ingredient-record :typeId="2" @addRecord="addRecord" />
+      <add-tracking-record :typeId="2" @addRecord="addRecord" />
     </modal-dialogue>
     <modal-dialogue v-model="showAddServing">
-      <add-individual-ingredient-record :typeId="1" @addRecord="addRecord" />
-      
+      <add-tracking-record :typeId="1" @addRecord="addRecord" />      
     </modal-dialogue>
   </div>
 </template>
@@ -53,16 +52,14 @@
 <script>
 import ConfigData from "../config/config.json";
 import ModalDialogue from "./ModalDialogue.vue";
-//import AddMealServingRecord from "./Tracking/AddMealServingRecord.vue";
-import AddIndividualIngredientRecord from "./Tracking/AddIndividualIngredientRecord.vue";
+import AddTrackingRecord from "./Tracking/AddTrackingRecord.vue";
 import TrackingRecord from "./Tracking/TrackingRecord.vue";
 export default {
   name: "CalorieTracking",
   components: {
     TrackingRecord,
     ModalDialogue,
-    AddIndividualIngredientRecord,
-    //AddMealServingRecord,
+    AddTrackingRecord,
   },
   data() {
     return {
