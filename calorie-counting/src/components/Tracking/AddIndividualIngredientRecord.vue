@@ -1,8 +1,11 @@
 <template>
     <div>
-        <h1>Add Individual Ingredient Record</h1>
+        <h1>
+            Add {{ typeId === 1 ? 'Meal Serving' : typeId === 2 ? 'Individual Ingredient' :''}} Record
+        </h1>
         <form @submit.prevent="submitForm">
-            <ingredient-select v-model="mealOrIngredientId" />
+            <ingredient-select v-if="typeId===2" v-model="mealOrIngredientId" />
+            <meal-select v-if="typeId===1" v-model="mealOrIngredientId" />
             <input type="number" min="0.0" step="0.01" v-model="quantity" title="quantity" placeholder="quantity" />
             <input type="datetime" v-model="dateTime" title="Date Time" placeholder="datetime" />
             <button type="submit" v-text="'Submit'"/>
@@ -13,9 +16,16 @@
 <script>
 import ConfigData from '../../config/config.json';
 import IngredientSelect from '../Ingredient/IngredientSelect.vue'
+import MealSelect from '../Meal/MealSelect.vue'
 export default {
-  components: { IngredientSelect },
+  components: { IngredientSelect, MealSelect },
     name: "AddIndividualIngredientRecord",
+    props: {
+        typeId:{
+            required: true,
+            type: Number
+        }
+    },
     data(){
         return {
             mealOrIngredientId: NaN,
@@ -28,7 +38,7 @@ export default {
             let record = {
                 mealOrIngredientId: this.mealOrIngredientId,
                 userId: this.$store.getters.selectedUser,
-                typeId: 2,
+                typeId: this.typeId,
                 quantity: this.quantity,
                 dateTime: this.dateTime
             }
@@ -45,16 +55,13 @@ export default {
                 if(data){
                     this.$emit('addRecord', record)
                 }else{
-                    alert('Adding Individual Ingredient Unsuccessful')
+                    alert('Adding ' + this.typeId === 1 ? 'Meal Serving' : this.typeId === 2 ? 'Individual Ingredient' :'' + 'Unsuccessful')
                 }
             });
-
-            
         }
     }
 }
 </script>
 
 <style scoped>
-
 </style>
