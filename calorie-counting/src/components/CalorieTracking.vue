@@ -1,13 +1,14 @@
 <template>
-  <div>
+  <div class="flex flex-col center">
     <h1>Calorie Tracking</h1>
     <input
+      class="w-1/2 mx-auto"
       type="date"
       title="Tracking Date"
       v-model="trackingDate"
       @change="getTrackingData"
     />
-    <table>
+    <table class="table-auto">
       <thead>
         <th>Name</th>
         <th>Quantity</th>
@@ -21,11 +22,24 @@
           :key="trackingRecord.id"
         />
       </tbody>
+      <tfoot>
+        <td colspan="2">
+          <button
+            type="button"
+            @click="showAddRecord = true"
+            v-text="'Add Ingredient Record'"
+          />
+        </td>
+        <td colspan="2">
+          <button
+            type="button"
+            @click="showAddServing = true"
+            v-text="'Add Meal Serving'"
+          />
+        </td>
+      </tfoot>
     </table>
-    <button type="button" @click="showAddRecord = true">Add Record</button>
-    <button type="button" @click="showAddServing = true">
-      Add Meal Serving
-    </button>
+
     <modal-dialogue v-model="showAddRecord">
       <add-individual-ingredient-record @addRecord="addRecord" />
     </modal-dialogue>
@@ -74,14 +88,14 @@ export default {
         .then((resp) => resp.json())
         .then((data) => (this.trackingRecords = data));
     },
-    addRecord(record){
-        console.log(record)
-        this.showAddRecord = false;
-        this.getTrackingData();
+    addRecord(record) {
+      console.log(record);
+      this.showAddRecord = false;
+      this.getTrackingData();
     },
-    addMealServing(mealServing){
-        console.log(mealServing)
-    }
+    addMealServing(mealServing) {
+      console.log(mealServing);
+    },
   },
   created() {
     this.getTrackingData();
