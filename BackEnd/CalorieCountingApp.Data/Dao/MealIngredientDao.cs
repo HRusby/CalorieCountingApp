@@ -21,7 +21,6 @@ namespace CalorieCountingApp.Data.Dao
                 MySqlParameter generatedId = CreateOutputParameter("$GeneratedId", MySqlDbType.Int32);
                 cmd.Parameters.Add(new MySqlParameter("$MealId", ingredient.MealId));
                 cmd.Parameters.Add(new MySqlParameter("$IngredientId", ingredient.IngredientId));
-                cmd.Parameters.Add(new MySqlParameter("$MetricId", (int)ingredient.MetricId));
                 cmd.Parameters.Add(new MySqlParameter("$Quantity", ingredient.Quantity));
                 cmd.Parameters.Add(generatedId);
                 cmd.ExecuteNonQuery();
@@ -35,7 +34,6 @@ namespace CalorieCountingApp.Data.Dao
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new MySqlParameter("$MealIngredientId", updatedIngredient.Id));
                 cmd.Parameters.Add(new MySqlParameter("$IngredientId", updatedIngredient.IngredientId));
-                cmd.Parameters.Add(new MySqlParameter("$MetricId", (int)updatedIngredient.MetricId));
                 cmd.Parameters.Add(new MySqlParameter("$Quantity", updatedIngredient.Quantity));
                 int affectedRows = cmd.ExecuteNonQuery();
                 return affectedRows == 1;
@@ -66,7 +64,6 @@ namespace CalorieCountingApp.Data.Dao
                         rdr.GetInt32("Id"),
                         rdr.GetInt32("MealId"),
                         rdr.GetString("IngredientName"),
-                        rdr.GetString("MetricShortName"),
                         rdr.GetDouble("Quantity")
                     );
                     mealIngredients.Add(meal);

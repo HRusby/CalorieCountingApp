@@ -1,7 +1,6 @@
-CREATE PROCEDURE AddMealIngredient (
+CREATE OR REPLACE PROCEDURE AddMealIngredient (
     IN $MealId INTEGER,
     IN $IngredientId INTEGER,
-    IN $MetricId INTEGER,
     IN $Quantity DOUBLE,
     OUT $GeneratedId INTEGER
 )
@@ -11,14 +10,12 @@ BEGIN
 	INSERT INTO MEAL_INGREDIENT (
         MealId, 
         IngredientId, 
-        MetricId,
         Quantity
     )
     VALUES 
     (
         $MealId,
         $IngredientId,
-        $MetricId,
         $Quantity
     );
 
