@@ -1,9 +1,9 @@
-CREATE PROCEDURE AddMealTrackingRecord (
+CREATE OR REPLACE PROCEDURE AddMealTrackingRecord (
 	IN $UserId INTEGER,
     IN $Quantity DOUBLE,
     IN $Calories DOUBLE,
     IN $DateTime DATETIME,
-    IN $MealId INTEGER,
+    IN $MealOrIngredientId INTEGER,
     OUT $GeneratedId INTEGER
 )
 BEGIN
@@ -18,7 +18,7 @@ BEGIN
         MealId)
     VALUES (
         @trackingId,
-        $MealId
+        $MealOrIngredientId
     );
 
     SELECT LAST_INSERT_ID() INTO $GeneratedId; 

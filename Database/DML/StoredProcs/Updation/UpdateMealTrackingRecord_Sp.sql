@@ -4,7 +4,7 @@ CREATE OR REPLACE PROCEDURE UpdateMealTrackingRecord (
     IN $Quantity DOUBLE,
     IN $Calories DOUBLE,
     IN $DateTime DATETIME,
-    IN $MealId INTEGER
+    IN $MealOrIngredientId INTEGER
 )
 BEGIN
     DECLARE $trackingId INTEGER;
@@ -13,6 +13,6 @@ BEGIN
     CALL UpdateTrackingRecord($trackingId, $Quantity, $Calories, $DateTime);
 
 	UPDATE MEAL_TRACKING SET
-    MealId = IFNULL($MealId, MealId)
+    MealId = IFNULL($MealOrIngredientId, MealId)
     WHERE Id = $MealTrackingId;
 END;
