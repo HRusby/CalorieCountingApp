@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using BackEnd.CalorieCountingApp.Domain;
 using CalorieCountingApp.Data.Dao;
 using CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain.Enums;
@@ -40,7 +42,7 @@ namespace CalorieCountingApp.Controllers
 
         [HttpPost]
         [Route("UpdateRecord")]
-        public bool UpdateRecord(TrackingRecord updatedRecord){
+        public bool UpdateRecord(DisplayableTrackingRecord updatedRecord){
             return dao.UpdateTrackingRecord(updatedRecord);
         }
 
@@ -48,6 +50,12 @@ namespace CalorieCountingApp.Controllers
         [Route("DeleteRecord")]
         public bool DeleteRecord([FromBody]int recordId){
             return dao.DeleteTrackingRecord(recordId);
+        }
+
+        [HttpPost]
+        [Route("GetTrackingDataForDateAndUser")]
+        public List<DisplayableTrackingRecord> GetTrackingDataForDateAndUser(TrackingDataRequest request){
+            return dao.GetTrackingDataForDateAndUser(request);
         }
     }
 }

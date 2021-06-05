@@ -14,10 +14,10 @@ namespace CalorieCountingApp.Domain
 
         public TrackingRecord(
             int id,
+            int userId,
             int ingredientId, 
-            double quantity, 
-            int userId, 
             MetricId metricId, 
+            double quantity,            
             DateTime dateTime)
         {
             Id = id;

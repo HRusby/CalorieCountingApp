@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
+using BackEnd.CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain.Enums;
 using MySql.Data.MySqlClient;
@@ -35,7 +37,7 @@ namespace CalorieCountingApp.Data.Dao
             }
         }
 
-        public bool UpdateTrackingRecord(TrackingRecord updatedRecord){
+        public bool UpdateTrackingRecord(DisplayableTrackingRecord updatedRecord){
             using (MySqlCommand cmd = new MySqlCommand("UpdateMeal", Connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -47,6 +49,32 @@ namespace CalorieCountingApp.Data.Dao
                 cmd.Parameters.Add(new MySqlParameter("$DateTime", updatedRecord.DateTime));
                 int affectedRows = cmd.ExecuteNonQuery();
                 return affectedRows == 1;
+            }
+        }
+
+        public List<DisplayableTrackingRecord> GetTrackingDataForDateAndUser(TrackingDataRequest request)
+        {
+            using(MySqlCommand cmd = new MySqlCommand("GetTrackingDataForDateAndUser", Connection)){
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("$UserId", request.UserId));
+                cmd.Parameters.Add(new MySqlParameter("$Date", request.Date));
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                List<DisplayableTrackingRecord> records = new List<DisplayableTrackingRecord>();
+                while(rdr.Read()){
+                    DisplayableTrackingRecord record = new DisplayableTrackingRecord(
+                        rdr.GetInt32("Id"),
+                        rdr.GetInt32("UserId"),
+                        rdr.GetInt32("IngredientId"),
+                        (MetricId) rdr.GetInt32("MetricId"),
+                        rdr.GetDouble("Quantity"),
+                        rdr.GetDateTime("DateTime"),
+                        rdr.GetString("IngredientName"),      
+                        rdr.GetString("MetricShortName")
+                    );
+                    records.Add(record);
+                }
+                return records;
             }
         }
 
