@@ -7,11 +7,21 @@
       v-model="trackingDate"
       @change="getTrackingData"
     />
-    <tracking-record
-      v-for="trackingRecord in trackingRecords"
-      :record="trackingRecord"
-      :key="trackingRecord.id"
-    />
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Calories</th>
+        <th>DateTime</th>
+      </thead>
+      <tbody>
+        <tracking-record
+          v-for="trackingRecord in trackingRecords"
+          :record="trackingRecord"
+          :key="trackingRecord.id"
+        />
+      </tbody>
+    </table>
     <button type="button" @click="showAddRecord = true">Add Record</button>
     <button type="button" @click="showAddServing = true">
       Add Meal Serving
@@ -20,7 +30,7 @@
       <add-individual-ingredient-record @addRecord="addRecord" />
     </modal-dialogue>
     <modal-dialogue v-model="showAddServing">
-      <add-meal-serving @addMealServing="addMealServing" />
+      <add-meal-serving-record @addMealServing="addMealServing" />
     </modal-dialogue>
   </div>
 </template>
@@ -28,7 +38,7 @@
 <script>
 import ConfigData from "../config/config.json";
 import ModalDialogue from "./ModalDialogue.vue";
-import AddMealServing from "./Tracking/AddMealServing.vue";
+import AddMealServingRecord from "./Tracking/AddMealServingRecord.vue";
 import AddIndividualIngredientRecord from "./Tracking/AddIndividualIngredientRecord.vue";
 import TrackingRecord from "./Tracking/TrackingRecord.vue";
 export default {
@@ -37,7 +47,7 @@ export default {
     TrackingRecord,
     ModalDialogue,
     AddIndividualIngredientRecord,
-    AddMealServing,
+    AddMealServingRecord,
   },
   data() {
     return {
@@ -66,6 +76,8 @@ export default {
     },
     addRecord(record){
         console.log(record)
+        this.showAddRecord = false;
+        this.getTrackingData();
     },
     addMealServing(mealServing){
         console.log(mealServing)

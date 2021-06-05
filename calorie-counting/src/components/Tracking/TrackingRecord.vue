@@ -1,7 +1,10 @@
 <template>
-    <div>
-        {{record.mealOrIngredientName}} - {{record.quantity}}{{record.metricShortName}} {{record.dateTime}}
-    </div>
+    <tr>
+        <td>{{record.mealOrIngredientName}}</td>
+        <td>{{record.quantity}}{{record.metricShortName}}</td>
+        <td>{{record.calories}}</td>
+        <td>{{record.dateTime}}</td>
+    </tr>
 </template>
 
 <script>
