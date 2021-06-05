@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Add Tracking Record</h1>
+        <h1>Add Individual Ingredient Record</h1>
         <form @submit.prevent="">
 
         </form>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: "AddTrackingRecord",
+    name: "AddIndividualIngredientRecord",
     data(){
         return {
 

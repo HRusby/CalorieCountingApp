@@ -17,7 +17,7 @@
       Add Meal Serving
     </button>
     <modal-dialogue v-model="showAddRecord">
-      <add-tracking-record @addRecord="addRecord" />
+      <add-individual-ingredient-record @addRecord="addRecord" />
     </modal-dialogue>
     <modal-dialogue v-model="showAddServing">
       <add-meal-serving @addMealServing="addMealServing" />
@@ -29,14 +29,14 @@
 import ConfigData from "../config/config.json";
 import ModalDialogue from "./ModalDialogue.vue";
 import AddMealServing from "./Tracking/AddMealServing.vue";
-import AddTrackingRecord from "./Tracking/AddTrackingRecord.vue";
+import AddIndividualIngredientRecord from "./Tracking/AddIndividualIngredientRecord.vue";
 import TrackingRecord from "./Tracking/TrackingRecord.vue";
 export default {
   name: "CalorieTracking",
   components: {
     TrackingRecord,
     ModalDialogue,
-    AddTrackingRecord,
+    AddIndividualIngredientRecord,
     AddMealServing,
   },
   data() {
