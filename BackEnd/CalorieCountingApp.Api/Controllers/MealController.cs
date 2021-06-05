@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using CalorieCountingApp.Domain;
-using System;
-using System.Text.Json;
-using CalorieCountingApp.Domain.Enums;
 using CalorieCountingApp.Data.Dao;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
@@ -13,7 +10,6 @@ namespace CalorieCountingApp.Controllers
     [Route("Meal")]
     public class MealController
     {
-
         private readonly MealDao dao;
 
         public MealController(IConfiguration configuration)
@@ -26,10 +22,8 @@ namespace CalorieCountingApp.Controllers
         [Route("AddNewMeal")]
         public int AddNewMeal([FromBody]Meal meal)
         {
-            Console.WriteLine("Request Received Name: "+meal.Name);
             // Returns the Id of the new record
-            return dao.AddNewMeal(
-                    meal);
+            return dao.AddNewMeal(meal);
         }
 
         [HttpPost]
