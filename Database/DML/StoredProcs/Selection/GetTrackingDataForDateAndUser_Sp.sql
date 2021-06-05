@@ -7,7 +7,7 @@ BEGIN
 		t.UserId,
 		tt.Id TypeId,
 		tt.`Type` Type,
-		m.Name SubTrackingName,
+		m.Name MealOrIngredientName,
 		t.Quantity,
 		t.Calories,
 		m2.ShortName,
