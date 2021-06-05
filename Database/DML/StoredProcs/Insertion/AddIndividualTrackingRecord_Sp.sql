@@ -1,6 +1,7 @@
 CREATE PROCEDURE AddIndividualTrackingRecord (
 	IN $UserId INTEGER,
     IN $Quantity DOUBLE,
+    IN $Calories DOUBLE,
     IN $DateTime DATETIME,
     IN $IngredientId INTEGER,
     OUT $GeneratedId INTEGER
@@ -10,7 +11,7 @@ BEGIN
 
     SELECT Id INTO $typeId FROM TRACKING_TYPE WHERE Type='Individual';
 
-    CALL AddTrackingRecord($UserId, $typeId, $Quantity, $DateTime, @trackingId);
+    CALL AddTrackingRecord($UserId, $typeId, $Quantity, $Calories, $DateTime, @trackingId);
 
 	INSERT INTO INDIVIDUAL_TRACKING (
         TrackingId, 
