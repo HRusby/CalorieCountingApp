@@ -2,7 +2,7 @@
     <div>
         <h1>Ingredients</h1>
         <meal-ingredient v-for="ingredient in mealIngredients" :key="ingredient.id" :value="ingredient" />
-        <new-meal-ingredient :mealId="mealId" @addIngredient="addMealIngredient"/>
+        <new-meal-ingredient :mealId="mealId" @addMealIngredient="addMealIngredient"/>
     </div>
 </template>
 
@@ -36,10 +36,8 @@ export default {
           body: JSON.stringify(newMealIngredient)
         })
         .then(resp => resp.json())
-        .then(data => console.log(data))
-
         // Refresh the Meal Ingredient List
-        this.retrieveMealIngredients();
+        .then(data => {if(data !== null || data !== -1){this.retrieveMealIngredients()}})
       },
       retrieveMealIngredients(){
         fetch(ConfigData.backendUrl + "MealIngredient/GetMealIngredientsForMealId",
