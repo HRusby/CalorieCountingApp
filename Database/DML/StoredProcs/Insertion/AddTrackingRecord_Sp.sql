@@ -2,6 +2,7 @@ CREATE PROCEDURE AddTrackingRecord (
 	IN $UserId INTEGER,
     IN $TrackingTypeId INTEGER,
     IN $Quantity DOUBLE,
+    IN $Calories DOUBLE,
     IN $DateTime DATETIME,
     OUT $GeneratedId INTEGER
 )
@@ -10,11 +11,13 @@ BEGIN
         UserId, 
         TrackingTypeId, 
         Quantity,
+        Calories,
         `DateTime`)
     VALUES (
         $UserId,
         $TrackingTypeId,
         $Quantity,
+        $Calories,
         $DateTime
     );
 

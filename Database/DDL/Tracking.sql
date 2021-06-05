@@ -1,9 +1,10 @@
 CREATE TABLE TRACKING (
     Id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    UserId INTEGER,
-    TrackingTypeId INTEGER,
-    Quantity DOUBLE,
-    `DateTime` DATETIME
+    UserId INTEGER NOT NULL,
+    TrackingTypeId INTEGER NOT NULL,
+    Quantity DOUBLE NOT NULL,
+    Calories DOUBLE NOT NULL,
+    `DateTime` DATETIME NOT NULL
 );
 
 ALTER TABLE TRACKING
