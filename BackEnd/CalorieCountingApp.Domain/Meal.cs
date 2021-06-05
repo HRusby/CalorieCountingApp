@@ -9,7 +9,7 @@ namespace CalorieCountingApp.Domain
         public string Name { get; private set; }
         public int UserId { get; private set; }
         public double? CookedWeight { get; private set; }
-        public MetricId CookedWeightMetricId { get; private set; }
+        public MetricId? CookedWeightMetricId { get; private set; }
         public string MetricShortName{get; private set;}
         public double? RemainingWeight { get; private set; }
         public DateTime CookedOn { get; private set; }
@@ -19,7 +19,7 @@ namespace CalorieCountingApp.Domain
             string name,
             int userId,
             double? cookedWeight,
-            MetricId cookedWeightMetricId,
+            int? cookedWeightMetricId,
             double? remainingWeight,
             DateTime cookedOn)
         {
@@ -27,8 +27,8 @@ namespace CalorieCountingApp.Domain
             Name = name;
             UserId = userId;
             CookedWeight = cookedWeight;
-            CookedWeightMetricId = cookedWeightMetricId;
-            MetricShortName = MetricIdHelper.GetShortName(CookedWeightMetricId);
+            CookedWeightMetricId = cookedWeightMetricId == null ? null : (MetricId)cookedWeightMetricId.Value;
+            MetricShortName = CookedWeightMetricId == null ? "" : MetricIdHelper.GetShortName(CookedWeightMetricId.Value);
             RemainingWeight = remainingWeight;
             CookedOn = cookedOn;
         }

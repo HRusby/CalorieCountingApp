@@ -16,10 +16,11 @@
         <th>DateTime</th>
       </thead>
       <tbody>
+        <!-- Key composed of typeId and tableId to ensure uniqueness -->
         <tracking-record
           v-for="trackingRecord in trackingRecords"
-          :record="trackingRecord"
-          :key="trackingRecord.id"
+          :record="trackingRecord"          
+          :key="trackingRecord.typeId + '.' + trackingRecord.id"
         />
       </tbody>
       <tfoot>
@@ -41,10 +42,10 @@
     </table>
 
     <modal-dialogue v-model="showAddRecord">
-      <add-tracking-record :typeId="2" @addRecord="addRecord" />
+      <add-tracking-record :typeId="2" v-model="trackingDate" @addRecord="addRecord" />
     </modal-dialogue>
     <modal-dialogue v-model="showAddServing">
-      <add-tracking-record :typeId="1" @addRecord="addRecord" />      
+      <add-tracking-record :typeId="1" v-model="trackingDate" @addRecord="addMealServing" />      
     </modal-dialogue>
   </div>
 </template>
@@ -63,7 +64,7 @@ export default {
   },
   data() {
     return {
-      trackingDate: new Date().toISOString().substr(0, 10),
+      trackingDate: new Date().toISOString().substr(0,10),
       trackingRecords: [],
       showAddRecord: false,
       showAddServing: false,
@@ -84,15 +85,16 @@ export default {
         body: JSON.stringify(trackingRequest),
       })
         .then((resp) => resp.json())
-        .then((data) => (this.trackingRecords = data));
+        .then((data) => (this.trackingRecords = data))
+        .then(()=>console.log(this.trackingRecords));
     },
-    addRecord(record) {
-      console.log(record);
+    addRecord() {
       this.showAddRecord = false;
       this.getTrackingData();
     },
-    addMealServing(mealServing) {
-      console.log(mealServing);
+    addMealServing() {
+      this.showAddServing = false;
+      this.getTrackingData();
     },
   },
   created() {

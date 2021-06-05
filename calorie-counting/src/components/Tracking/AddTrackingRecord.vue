@@ -24,13 +24,17 @@ export default {
         typeId:{
             required: true,
             type: Number
+        },
+        modelValue: {
+            required: true,
+            type: String
         }
     },
     data(){
         return {
             mealOrIngredientId: NaN,
             quantity: NaN,
-            dateTime: new Date().toISOString()
+            dateTime: new Date(Date.parse(this.modelValue + 'T00:00:00.000Z'))
         }
     },
     methods:{
@@ -53,7 +57,7 @@ export default {
             .then((resp) => resp.json())
             .then(data => {
                 if(data){
-                    this.$emit('addRecord', record)
+                    this.$emit('addRecord')
                 }else{
                     alert('Adding ' + this.typeId === 1 ? 'Meal Serving' : this.typeId === 2 ? 'Individual Ingredient' :'' + 'Unsuccessful')
                 }
