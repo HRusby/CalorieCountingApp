@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: "AddMealServing",
+    name: "AddMealServingRecord",
     data() {
         return {
 
