@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using BackEnd.CalorieCountingApp.Api.Models;
 using BackEnd.CalorieCountingApp.Domain;
-using CalorieCountingApp.Data.Dao;
 using CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
@@ -14,26 +14,27 @@ namespace CalorieCountingApp.Controllers
     public class TrackingController
     {
 
-        private readonly TrackingDao dao;
+        private readonly TrackingModel model;
 
         public TrackingController(IConfiguration configuration)
         {
             string connString = configuration.GetValue<string>("ConnectionStrings:CalorieCounting");
-            dao = new TrackingDao(connString);
+            model = new TrackingModel(connString);
         }
 
         [HttpPost]
         [Route("AddNewRecord")]
         public int AddNewRecord(TrackingRecord newRecord)
         {
+            // TODO: Calculate the calories based on meal/ingredient id and quantity
             // Returns the new records Id
             if (newRecord.TypeId.Equals(TrackingTypeId.Individual))
             {
-                return dao.AddNewIndividualTrackingRecord(newRecord);
+                return model.AddNewIndividualTrackingRecord(newRecord);
             }
             else if (newRecord.TypeId.Equals(TrackingTypeId.Meal))
             {
-                return dao.AddNewMealTrackingRecord(newRecord);
+                return model.AddNewMealTrackingRecord(newRecord);
             }
             else
             {
@@ -47,11 +48,11 @@ namespace CalorieCountingApp.Controllers
         {
             if (updatedRecord.TypeId.Equals(TrackingTypeId.Individual))
             {
-                return dao.UpdateNewIndividualTrackingRecord(updatedRecord);
+                return model.UpdateNewIndividualTrackingRecord(updatedRecord);
             }
             else if (updatedRecord.TypeId.Equals(TrackingTypeId.Meal))
             {
-                return dao.UpdateNewMealTrackingRecord(updatedRecord);
+                return model.UpdateNewMealTrackingRecord(updatedRecord);
             }
             else
             {
@@ -63,14 +64,14 @@ namespace CalorieCountingApp.Controllers
         [Route("DeleteRecord")]
         public bool DeleteRecord([FromBody] int recordId)
         {
-            return dao.DeleteTrackingRecord(recordId);
+            return model.DeleteTrackingRecord(recordId);
         }
 
         [HttpPost]
         [Route("GetTrackingDataForDateAndUser")]
         public List<DisplayableTrackingRecord> GetTrackingDataForDateAndUser(TrackingDataRequest request)
         {
-            return dao.GetTrackingDataForDateAndUser(request);
+            return model.GetTrackingDataForDateAndUser(request);
         }
     }
 }

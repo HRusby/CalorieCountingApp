@@ -12,16 +12,16 @@ namespace CalorieCountingApp.Domain
         public int UserId { get; private set; }
         public TrackingTypeId TypeId { get; private set;}
         public double Quantity { get; private set; }
-        public double Calories { get; private set; }
+        public Decimal? Calories { get; set; }
         public DateTime DateTime { get; private set; }
 
         public TrackingRecord(
-            int id,
+            int? id,
             int mealOrIngredientId,
             int userId,
             TrackingTypeId typeId,
             double quantity,         
-            double calories,   
+            Decimal? calories,   
             DateTime dateTime)
         {
             Id = id;

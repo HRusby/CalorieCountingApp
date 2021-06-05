@@ -14,7 +14,7 @@ namespace CalorieCountingApp.Domain
             int userId,
             TrackingTypeId trackingType,
             double quantity,
-            double calories,
+            decimal? calories,
             DateTime dateTime,
             string mealOrIngredientName,
             string metricShortName)

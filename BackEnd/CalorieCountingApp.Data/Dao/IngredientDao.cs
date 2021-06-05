@@ -76,5 +76,23 @@ namespace CalorieCountingApp.Data.Dao
                 return ingredients;
             }
         }
+
+        public Ingredient GetIngredient(int ingredientId){
+            using (MySqlCommand cmd = new MySqlCommand("GetIngredient", Connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("$IngredientId", ingredientId));
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while(rdr.Read()){
+                return new Ingredient(
+                        rdr.GetInt32("Id"),
+                        rdr.GetString("Name"),
+                        rdr.GetDecimal("CaloriesPerMetric"),
+                        (MetricId)rdr.GetInt32("MetricId")                        
+                    );
+                }
+                return null;
+            }
+        }
     }
 }

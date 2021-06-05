@@ -15,26 +15,6 @@ namespace CalorieCountingApp.Data.Dao
         {
         }
 
-        public int AddNewIndividualTrackingRecord(TrackingRecord record)
-        {
-            return AddTrackingRecord(record, "AddIndividualTrackingRecord");
-        }
-
-        public int AddNewMealTrackingRecord(TrackingRecord record)
-        {
-            return AddTrackingRecord(record, "AddMealTrackingRecord");
-        }
-
-        public bool UpdateNewIndividualTrackingRecord(TrackingRecord record)
-        {
-            return UpdateTrackingRecord(record, "UpdateIndividualTrackingRecord");
-        }
-
-        public bool UpdateNewMealTrackingRecord(TrackingRecord record)
-        {
-            return UpdateTrackingRecord(record, "UpdateMealTrackingRecord");
-        }
-
         public List<DisplayableTrackingRecord> GetTrackingDataForDateAndUser(TrackingDataRequest request)
         {
             using (MySqlCommand cmd = new MySqlCommand("GetTrackingDataForDateAndUser", Connection))
@@ -53,7 +33,7 @@ namespace CalorieCountingApp.Data.Dao
                         rdr.GetInt32("UserId"),
                         (TrackingTypeId)rdr.GetInt32("TypeId"),
                         rdr.GetDouble("Quantity"),
-                        rdr.GetDouble("Calories"),
+                        rdr.GetDecimal("Calories"),
                         rdr.GetDateTime("DateTime"),
                         rdr.GetString("MealOrIngredientName"),
                         rdr.GetString("MetricShortName")
@@ -75,7 +55,7 @@ namespace CalorieCountingApp.Data.Dao
             }
         }
 
-        private int AddTrackingRecord(TrackingRecord record, string storedProcName)
+        public int AddTrackingRecord(TrackingRecord record, string storedProcName)
         {
             using (MySqlCommand cmd = new MySqlCommand(storedProcName, Connection))
             {
@@ -92,7 +72,7 @@ namespace CalorieCountingApp.Data.Dao
             }
         }
 
-        private bool UpdateTrackingRecord(TrackingRecord updatedRecord, string storedProcName)
+        public bool UpdateTrackingRecord(TrackingRecord updatedRecord, string storedProcName)
         {
             using (MySqlCommand cmd = new MySqlCommand(storedProcName, Connection))
             {

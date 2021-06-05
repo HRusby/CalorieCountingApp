@@ -25,10 +25,12 @@ SOURCE StoredProcs/Insertion/AddUser_Sp.sql
 
 -- Selection Procs;
 SOURCE StoredProcs/Selection/CheckLogin_Sp.sql
+SOURCE StoredProcs/Selection/GetMeal_Sp.sql
 SOURCE StoredProcs/Selection/GetMealsForUser_Sp.sql
 SOURCE StoredProcs/Selection/GetMetrics_Sp.sql
 SOURCE StoredProcs/Selection/GetMealIngredientsForMealId_Sp.sql
 SOURCE StoredProcs/Selection/GetIngredients_Sp.sql
+SOURCE StoredProcs/Selection/GetIngredient_Sp.sql
 SOURCE StoredProcs/Selection/GetTrackingDataForDateAndUser_Sp.sql
 
 -- Updation Procs;

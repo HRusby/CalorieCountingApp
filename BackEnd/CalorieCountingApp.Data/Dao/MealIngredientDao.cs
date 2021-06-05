@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using CalorieCountingApp.Data.Dao;
 using CalorieCountingApp.Domain;
-using CalorieCountingApp.Domain.Enums;
 using MySql.Data.MySqlClient;
 
-namespace BackEnd.CalorieCountingApp.Data.Dao
+namespace CalorieCountingApp.Data.Dao
 {
     public class MealIngredientDao : ADao
     {

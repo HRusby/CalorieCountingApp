@@ -79,5 +79,26 @@ namespace CalorieCountingApp.Data.Dao
                 return meals;
             }
         }
+
+        public Meal GetMeal(int mealId)
+        {
+            using(MySqlCommand cmd = new MySqlCommand("GetMeal", Connection)){
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("$MealId", mealId));
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while(rdr.Read()){
+                    return new Meal(
+                        rdr.GetInt32("Id"),
+                        rdr.GetString("Name"),
+                        rdr.GetInt32("UserId"),
+                        rdr.GetDouble("CookedWeight"),
+                        (MetricId)rdr.GetInt32("CookedWeightMetricId"),
+                        rdr.GetDouble("RemainingWeight"),
+                        rdr.GetDateTime("CookedOn")
+                    );
+                }
+                return null;
+            }
+        }
     }
 }

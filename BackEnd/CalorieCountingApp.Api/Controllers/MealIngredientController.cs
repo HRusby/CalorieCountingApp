@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using BackEnd.CalorieCountingApp.Data.Dao;
+using CalorieCountingApp.Data.Dao;
 using CalorieCountingApp.Domain;
-using CalorieCountingApp.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
