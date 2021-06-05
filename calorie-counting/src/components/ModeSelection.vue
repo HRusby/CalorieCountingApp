@@ -23,7 +23,7 @@
 
 <script>
 import MealCreation from "./Meal/MealCreation.vue";
-import CalorieTracking from "./CalorieTracking.vue";
+import CalorieTracking from "./Tracking/CalorieTracking.vue";
 export default {
   components: { MealCreation, CalorieTracking },
   name: "ModeSelection",

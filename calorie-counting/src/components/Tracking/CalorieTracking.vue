@@ -50,10 +50,10 @@
 </template>
 
 <script>
-import ConfigData from "../config/config.json";
-import ModalDialogue from "./ModalDialogue.vue";
-import AddTrackingRecord from "./Tracking/AddTrackingRecord.vue";
-import TrackingRecord from "./Tracking/TrackingRecord.vue";
+import ConfigData from "../../config/config.json";
+import ModalDialogue from "../ModalDialogue.vue";
+import AddTrackingRecord from "./AddTrackingRecord.vue";
+import TrackingRecord from "./TrackingRecord.vue";
 export default {
   name: "CalorieTracking",
   components: {
