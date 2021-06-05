@@ -24,37 +24,52 @@ namespace CalorieCountingApp.Controllers
 
         [HttpPost]
         [Route("AddNewRecord")]
-        public int AddNewRecord(
-            int userId,
-            int ingredientId,
-            MetricId metricId,
-            double quantity,
-            DateTime dateTime)
+        public int AddNewRecord(TrackingRecord newRecord)
         {
             // Returns the new records Id
-            return dao.AddNewTrackingRecord(
-                        userId,
-                        ingredientId,
-                        metricId,
-                        quantity,
-                        dateTime);
+            if (newRecord.TypeId.Equals(TrackingTypeId.Individual))
+            {
+                return dao.AddNewIndividualTrackingRecord(newRecord);
+            }
+            else if (newRecord.TypeId.Equals(TrackingTypeId.Meal))
+            {
+                return dao.AddNewMealTrackingRecord(newRecord);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Tracking Type doesn't resolve to Individual or Meal for record: " + newRecord.ToString());
+            }
         }
 
         [HttpPost]
         [Route("UpdateRecord")]
-        public bool UpdateRecord(DisplayableTrackingRecord updatedRecord){
-            return dao.UpdateTrackingRecord(updatedRecord);
+        public bool UpdateRecord(TrackingRecord updatedRecord)
+        {
+            if (updatedRecord.TypeId.Equals(TrackingTypeId.Individual))
+            {
+                return dao.UpdateNewIndividualTrackingRecord(updatedRecord);
+            }
+            else if (updatedRecord.TypeId.Equals(TrackingTypeId.Meal))
+            {
+                return dao.UpdateNewMealTrackingRecord(updatedRecord);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Tracking Type doesn't resolve to Individual or Meal for record: " + updatedRecord.ToString());
+            }
         }
 
         [HttpPost]
         [Route("DeleteRecord")]
-        public bool DeleteRecord([FromBody]int recordId){
+        public bool DeleteRecord([FromBody] int recordId)
+        {
             return dao.DeleteTrackingRecord(recordId);
         }
 
         [HttpPost]
         [Route("GetTrackingDataForDateAndUser")]
-        public List<DisplayableTrackingRecord> GetTrackingDataForDateAndUser(TrackingDataRequest request){
+        public List<DisplayableTrackingRecord> GetTrackingDataForDateAndUser(TrackingDataRequest request)
+        {
             return dao.GetTrackingDataForDateAndUser(request);
         }
     }

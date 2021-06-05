@@ -5,21 +5,28 @@ namespace CalorieCountingApp.Domain
 {
     public class DisplayableTrackingRecord : TrackingRecord
     {
-        public string IngredientName { get; private set; }
         public string MetricShortName { get; private set; }
+        public string MealOrIngredientName { get; private set; }
 
         public DisplayableTrackingRecord(
             int id,
+            int mealOrIngredientId,
             int userId,
-            int ingredientId, 
-            MetricId metricId, 
-            double quantity,            
+            TrackingTypeId trackingType,
+            double quantity,
+            double calories,
             DateTime dateTime,
-            string ingredientName,
+            string mealOrIngredientName,
             string metricShortName)
-            : base(id, userId, ingredientId, metricId, quantity, dateTime)
+            : base(id,
+                    mealOrIngredientId,
+                    userId,
+                    trackingType,
+                    quantity,
+                    calories,
+                    dateTime)
         {
-            IngredientName = ingredientName;
+            MealOrIngredientName = mealOrIngredientName;
             MetricShortName = metricShortName;
         }
     }

@@ -1,16 +1,16 @@
-CREATE PROCEDURE GetTrackingDataForDateAndUser(
+CREATE OR REPLACE PROCEDURE GetTrackingDataForDateAndUser(
 	IN $UserId INTEGER, 
 	IN $Date DATE) 
 BEGIN
-	SELECT t.Id TrackingId,
-		mt.Id SubTrackingId,
+	SELECT mt.Id TrackingId,
+		mt.MealId MealOrIngredientId,
 		t.UserId,
 		tt.Id TypeId,
 		tt.`Type` Type,
 		m.Name MealOrIngredientName,
 		t.Quantity,
 		t.Calories,
-		m2.ShortName,
+		m2.ShortName MetricShortName,
 		t.DateTime
 	FROM TRACKING t
 		INNER JOIN MEAL_TRACKING mt ON t.Id = mt.TrackingId
@@ -21,15 +21,15 @@ BEGIN
 		AND t.TrackingTypeId = 1
 		AND DATE(t.`DateTime`) = $Date
 	UNION ALL
-	SELECT t.Id,
-		it.Id SubTrackingId,
+	SELECT it.Id TrackingId,
+		it.IngredientId MealOrIngredientId,
 		t.UserId,
 		tt.Id TypeId,
 		tt.`Type` Type,
-		i.Name SubTrackingName,
+		i.Name MealOrIngredientName,
 		t.Quantity,
 		t.Calories,
-		m.ShortName,
+		m.ShortName MetricShortName,
 		t.DateTime
 	FROM TRACKING t
 		INNER JOIN INDIVIDUAL_TRACKING it ON t.Id = it.TrackingId
