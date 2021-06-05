@@ -1,17 +1,13 @@
-CREATE PROCEDURE UpdateTrackingRecord (
-    IN $TrackingId INTEGER,
-    IN $UserId INTEGER,
-    IN $IngredientId INTEGER,
-    IN $MetricId INTEGER,
+CREATE OR REPLACE PROCEDURE UpdateTrackingRecord (
+    IN $TrackingId INT,
     IN $Quantity DOUBLE,
+    IN $Calories DOUBLE,
     IN $DateTime DATETIME
 )
 BEGIN
 	UPDATE TRACKING SET
-    UserId = IFNULL($UserId, Name),
-    IngredientId = IFNULL($IngredientId, Name),
-    MetricId = IFNULL($MetricId, Name),
-    Quantity = IFNULL($Quantity, Name),
-    `DateTime` = IFNULL($DateTime, Name)
+    Quantity = IFNULL($Quantity, Quantity),
+    Calories = IFNULL($Calories, Calories),
+    `DateTime` = IFNULL($DateTime, `DateTime`)
     WHERE Id = $TrackingId;
 END;
