@@ -9,6 +9,7 @@ namespace CalorieCountingApp.Domain
         public string Name {get; private set;}
         public decimal CaloriesPerMetric{get; private set;}
         public MetricId MetricId {get; private set;}
+        public String MetricShortName {get; private set;}
 
         public Ingredient(int? id, 
             string name, 
@@ -19,6 +20,7 @@ namespace CalorieCountingApp.Domain
             Name = name;
             CaloriesPerMetric = caloriesPerMetric;
             MetricId = metricId;
+            MetricShortName = MetricIdHelper.GetShortName(MetricId);
         }
     }
 }
