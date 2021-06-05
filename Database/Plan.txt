@@ -4,12 +4,25 @@ Tables:
         Name
         
     Tracking
-        Id
+        ID
         UserId FK
+        TrackingTypeId FK
+        Quantity
         DateTime
+
+    IndividualTracking
+        Id
+        TrackingId FK
         IngredientId FK
-        Amount
-        MetricId FK
+
+    MealTracking
+        Id
+        TrackingId FK
+        MealId FK
+
+    TrackingType
+        Id
+        Type
 
     Ingredient
         Id

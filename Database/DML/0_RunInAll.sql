@@ -6,6 +6,7 @@ USE CalorieCounting
 SOURCE InitialUser.sql
 SOURCE InitialMetrics.sql
 SOURCE InitialMetricConversions.sql
+SOURCE InitialTrackingTypes.sql
 
 -- Deletion Procs
 SOURCE StoredProcs/Deletion/DeleteIngredient_Sp.sql
@@ -18,6 +19,8 @@ SOURCE StoredProcs/Insertion/AddIngredient_Sp.sql
 SOURCE StoredProcs/Insertion/AddMeal_Sp.sql
 SOURCE StoredProcs/Insertion/AddMealIngredient_Sp.sql
 SOURCE StoredProcs/Insertion/AddTrackingRecord_Sp.sql
+SOURCE StoredProcs/Insertion/AddIndividualTrackingRecord_Sp.sql
+SOURCE StoredProcs/Insertion/AddMealTrackingRecord_Sp.sql
 SOURCE StoredProcs/Insertion/AddUser_Sp.sql
 
 -- Selection Procs;
