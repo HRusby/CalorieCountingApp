@@ -36,7 +36,7 @@ namespace BackEnd.CalorieCountingApp.Api.Models
             double sum = ingredients.Sum(i=>i.Quantity);
             Meal meal = mealDao.GetMeal(record.MealOrIngredientId);
             Decimal caloriesPerMetric = Decimal.Divide(new decimal(sum), new decimal(meal.CookedWeight.Value));
-            record.Calories = caloriesPerMetric;
+            record.Calories = Decimal.Multiply(caloriesPerMetric, new decimal(record.Quantity));
             // Add Calories to Meal Ingredient
             // StoredProc to add all MealIngredient calories together and return with Meal Cooked Weight
             // Divide Total Calories by CookedWeight
