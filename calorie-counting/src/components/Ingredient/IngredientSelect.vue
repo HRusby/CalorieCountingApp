@@ -6,7 +6,7 @@
         v-for="ingredient in ingredients"
         :key="ingredient.id"
         :value="ingredient.id"
-        v-text="ingredient.name"
+        v-text="ingredient.name + ' ('+ingredient.metricShortName+')'"
       />
       <option
         :value="NaN"
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+// Todo display metric shortname in option value (in parentheses)
 import ConfigData from "../../config/config.json";
 import ModalDialogue from "../ModalDialogue.vue";
 import NewIngredient from "./NewIngredient.vue";

@@ -5,7 +5,7 @@
       v-for="meal in meals"
       :key="meal.id"
       :value="meal.id"
-      v-text="meal.name"
+      v-text="meal.name + ' (' + meal.metricShortName + ')'"
     />
   </select>
 </template>
@@ -51,7 +51,7 @@ export default {
       body: JSON.stringify(this.$store.getters.selectedUser),
     })
       .then((resp) => resp.json())
-      .then((data) => (this.meals = data));
+      .then((data) => (this.meals = data))
   },
 };
 </script>
