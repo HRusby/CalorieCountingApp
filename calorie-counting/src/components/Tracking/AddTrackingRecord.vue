@@ -19,7 +19,7 @@ import IngredientSelect from '../Ingredient/IngredientSelect.vue'
 import MealSelect from '../Meal/MealSelect.vue'
 export default {
   components: { IngredientSelect, MealSelect },
-    name: "AddIndividualIngredientRecord",
+    name: "AddTrackingRecord",
     props: {
         typeId:{
             required: true,
