@@ -7,7 +7,7 @@ namespace CalorieCountingApp.Domain
 {
     public class TrackingRecord
     {
-        public int Id { get; private set; }
+        public int? Id { get; private set; }
         public int MealOrIngredientId { get; private set; }
         public int UserId { get; private set; }
         public TrackingTypeId TypeId { get; private set;}
