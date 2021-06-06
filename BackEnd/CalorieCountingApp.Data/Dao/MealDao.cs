@@ -22,7 +22,7 @@ namespace CalorieCountingApp.Data.Dao
                 cmd.Parameters.Add(new MySqlParameter("$Name", meal.Name));
                 cmd.Parameters.Add(new MySqlParameter("$UserId", meal.UserId));
                 cmd.Parameters.Add(new MySqlParameter("$CookedWeight", meal.CookedWeight));
-                cmd.Parameters.Add(new MySqlParameter("$CookedWeightMetricId", meal.CookedWeightMetricId != null ? (int)meal.CookedWeightMetricId : null));
+                cmd.Parameters.Add(new MySqlParameter("$CookedWeightMetricId", meal.CookedWeightMetricId.HasValue ? (int)meal.CookedWeightMetricId : null));
                 cmd.Parameters.Add(new MySqlParameter("$CookedOn", meal.CookedOn));
                 cmd.Parameters.Add(generatedId);
                 cmd.ExecuteNonQuery();
@@ -37,7 +37,7 @@ namespace CalorieCountingApp.Data.Dao
                 cmd.Parameters.Add(new MySqlParameter("$MealId", updatedMeal.Id));
                 cmd.Parameters.Add(new MySqlParameter("$Name", updatedMeal.Name));
                 cmd.Parameters.Add(new MySqlParameter("$CookedWeight", updatedMeal.CookedWeight));
-                cmd.Parameters.Add(new MySqlParameter("$CookedWeightMetricId", (int)updatedMeal.CookedWeightMetricId));
+                cmd.Parameters.Add(new MySqlParameter("$CookedWeightMetricId", updatedMeal.CookedWeightMetricId.HasValue ? (int)updatedMeal.CookedWeightMetricId : null));
                 cmd.Parameters.Add(new MySqlParameter("$RemainingWeight", updatedMeal.RemainingWeight));
                 cmd.Parameters.Add(new MySqlParameter("$CookedOn", updatedMeal.CookedOn));
                 int affectedRows = cmd.ExecuteNonQuery();
@@ -70,7 +70,7 @@ namespace CalorieCountingApp.Data.Dao
                         rdr.GetString("Name"),
                         rdr.GetInt32("UserId"),
                         rdr["CookedWeight"].DbCast<double>(),
-                        rdr["CookedWeightMetricId"].DbCast<int>(),
+                        (MetricId?)rdr["CookedWeightMetricId"].DbCast<int>(),
                         rdr["RemainingWeight"].DbCast<double>(),
                         rdr.GetDateTime("CookedOn")
                     );
@@ -91,9 +91,9 @@ namespace CalorieCountingApp.Data.Dao
                         rdr.GetInt32("Id"),
                         rdr.GetString("Name"),
                         rdr.GetInt32("UserId"),
-                        rdr.GetDouble("CookedWeight"),
-                        rdr.GetInt32("CookedWeightMetricId").DbCast<int>(),
-                        rdr.GetDouble("RemainingWeight"),
+                        rdr["CookedWeight"].DbCast<double>(),
+                        (MetricId?)rdr["CookedWeightMetricId"].DbCast<int>(),
+                        rdr["RemainingWeight"].DbCast<double>(),
                         rdr.GetDateTime("CookedOn")
                     );
                 }

@@ -20,7 +20,7 @@ namespace CalorieCountingApp.Controllers
 
         [HttpPost]
         [Route("AddNewMeal")]
-        public int AddNewMeal([FromBody]Meal meal)
+        public int AddNewMeal(Meal meal)
         {
             // Returns the Id of the new record
             return dao.AddNewMeal(meal);
