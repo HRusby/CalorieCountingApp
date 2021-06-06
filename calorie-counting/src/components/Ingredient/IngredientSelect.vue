@@ -21,7 +21,6 @@
 </template>
 
 <script>
-// Todo display metric shortname in option value (in parentheses)
 import ConfigData from "../../config/config.json";
 import ModalDialogue from "../ModalDialogue.vue";
 import NewIngredient from "./NewIngredient.vue";
@@ -54,7 +53,12 @@ export default {
     },
     selectNewIngredient(newIngredient) {
       this.getIngredients()
-      this.selectedIngredientId = newIngredient.id    
+      this.selectedIngredientId = newIngredient.id
+      // TODO:  Update NewIngredient to also get MetricShortName when adding ingredient 
+      //          so the additional lookup isn't necessary. Can be done by updating MetricSelect
+      //          to bind a Metric Object rather than metricId then below code can be used instead.
+      // this.ingredients.push(newIngredient);
+      // this.selectedIngredientId = newIngredient.id;    
     },
   },
   computed: {
