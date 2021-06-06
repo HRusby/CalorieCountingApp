@@ -54,7 +54,7 @@ export default {
         userId: this.$store.getters.selectedUser,
         cookedWeight: this.weight,
         cookedWeightMetricId: this.selectedMetricId,
-        remainingWeight: null,
+        remainingWeight: this.weight, // RemainingWeight will always start the same as cookedWeight
         cookedOn: this.cookedOn,
       };
 
