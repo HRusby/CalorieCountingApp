@@ -6,7 +6,7 @@
         v-for="ingredient in ingredients"
         :key="ingredient.id"
         :value="ingredient.id"
-        v-text="ingredient.name + ' ('+ingredient.metricShortName+')'"
+        v-text="ingredient.name + ' (' + ingredient.metricShortName + ')'"
       />
       <option
         :value="NaN"
@@ -42,9 +42,19 @@ export default {
     };
   },
   methods: {
+    getIngredients() {
+      fetch(ConfigData.backendUrl + "Ingredient/GetIngredients", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resp) => resp.json())
+        .then((data) => (this.ingredients = data));
+    },
     selectNewIngredient(newIngredient) {
-      this.ingredients.push(newIngredient);
-      this.selectedIngredientId = newIngredient.id;
+      this.getIngredients()
+      this.selectedIngredientId = newIngredient.id    
     },
   },
   computed: {
@@ -58,14 +68,7 @@ export default {
     },
   },
   created() {
-    fetch(ConfigData.backendUrl + "Ingredient/GetIngredients", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => (this.ingredients = data));
+    this.getIngredients()
   },
 };
 </script>
