@@ -46,6 +46,8 @@ export default {
   },
   methods: {
     submitForm() {
+      if(this.meal.remainingWeight === null)
+        this.meal.remainingWeight = this.meal.cookedWeight
       fetch(ConfigData.backendUrl + "Meal/UpdateMeal", {
         method: "POST",
         headers: {
@@ -54,10 +56,9 @@ export default {
         body: JSON.stringify(this.meal),
       })
         .then((resp) => resp.json())
-        .then((data) => console.log("data: " + data));
-      this.$emit("updatedMeal", this.meal);
-    },
-  },
+        .then(data => data===true ? this.$emit("updatedMeal", this.meal) : console.log('Meal not updated'))
+    }
+  }
 };
 </script>
 
