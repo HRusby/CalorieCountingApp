@@ -1,29 +1,10 @@
-Calorie Counter App
+TODO:
+    Add Validation to Frontend forms
+    CSS Everywhere
+    New User adding
 
-Simple Mode selection
-    Button for Calorie Tracking
-    Button for Meal Creation
-
-Basic user selection
-
-Calendar Navigation
-    Move between dates
-
-Table for selected day
-    Each Item:
-        DateTime
-        Item
-        Calories
-        Amount
-        Metric
-
-
-Form adding new Meal
-
-
-Form adding new track:
-    Add new ingredient
-        Textbox populates with similar ingredients from api
-    Add New Meal Portion
-        Select from currently available meals
-        Input Weight
+Bugs:
+    New Ingredient has undefined for metric in parentheses
+    Adding meals to past dates
+    Make sure the remaining weight is updated when a serving is taken
+    Fix API ADao to open a connection on each request to prevent them from going stale
