@@ -15,4 +15,7 @@ BEGIN
 	UPDATE MEAL_TRACKING SET
     MealId = IFNULL($MealOrIngredientId, MealId)
     WHERE Id = $MealTrackingId;
+
+    UPDATE MEAL SET RemainingWeight = RemainingWeight - $Quantity
+    WHERE Id = $MealOrIngredientId;
 END;

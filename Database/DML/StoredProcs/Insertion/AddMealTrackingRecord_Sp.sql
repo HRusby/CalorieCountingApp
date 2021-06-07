@@ -22,4 +22,7 @@ BEGIN
     );
 
     SELECT LAST_INSERT_ID() INTO $GeneratedId; 
+    
+    UPDATE MEAL SET RemainingWeight = RemainingWeight - $Quantity
+    WHERE Id = $MealOrIngredientId;
 END;

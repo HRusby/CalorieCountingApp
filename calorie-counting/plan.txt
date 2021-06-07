@@ -4,7 +4,14 @@ TODO:
     New User adding
 
 Bugs:
-    New Ingredient has undefined for metric in parentheses
     Adding meals to past dates
     Make sure the remaining weight is updated when a serving is taken
     Fix API ADao to open a connection on each request to prevent them from going stale
+    Add Capacity to delete meals (Remove when RemainingWeight Drops <= 0)
+        When MealTrackingRecord is removed increase Meal RemainingWeight by Quantity
+    Update CalorieTracking to ensure TrackingRecord uses DateTime not Date
+
+    Check Update/Add StoredProcs what happens if values are null?
+
+    Update stored proc UpdateMealTrackingRecord to ensure RemainingWeight is updated in relation to change of $Quantity
+    not as a flat value of the input $Quantity parameter
