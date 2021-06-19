@@ -7,7 +7,7 @@
             <ingredient-select v-if="typeId===2" v-model="mealOrIngredientId" />
             <meal-select v-if="typeId===1" v-model="mealOrIngredientId" />
             <input type="number" min="0.0" step="0.01" v-model="quantity" title="quantity" placeholder="quantity" />
-            <input type="datetime" v-model="dateTime" title="Date Time" placeholder="datetime" />
+            <input type="datetime-local" v-model="dateTime" title="Date Time" placeholder="datetime" />
             <button type="submit" v-text="'Submit'"/>
         </form>
     </div>
@@ -34,11 +34,12 @@ export default {
         return {
             mealOrIngredientId: NaN,
             quantity: NaN,
-            dateTime: new Date(Date.parse(this.modelValue + 'T00:00:00.000Z'))
+            dateTime: new Date(new Date(Date.parse(this.modelValue)).setTime(new Date().getTime()))
         }
     },
     methods:{
         submitForm(){
+            console.log(this.dateTime)
             let record = {
                 mealOrIngredientId: this.mealOrIngredientId,
                 userId: this.$store.getters.selectedUser,
