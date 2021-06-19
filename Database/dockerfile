@@ -1,5 +1,6 @@
-ARG VERSION=latest
-FROM mariadb/server:${VERSION}
+# Version needed to run on Raspberry Pi ARM architecture
+FROM linuxserver/mariadb:alpine
+# FROM mariadb/server:latest
 ENV MYSQL_ROOT_PASSWORD admin
 ENV MYSQL_DATABASE: CalorieCounting
 ENV MYSQL_USER: root
@@ -19,4 +20,4 @@ EXPOSE 3306
 
 ### Connecting to mysql from host ###
 # mysql -h localhost -P 6001 --protocol=tcp -u root -padmin
-#docker run -d --network caloriecounting --network-alias database --name=caloriecounting-database -p 6001:3306 -v caloriecounting-db:/var/lib/mysql caloriecounting-database-image
+#docker run -d --name=caloriecounting-database -p 6001:3306 -v caloriecounting-db:/var/lib/mysql caloriecounting-database-image
