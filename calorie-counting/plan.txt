@@ -3,9 +3,11 @@ TODO:
     CSS Everywhere
     New User adding
 
+    Make fork and commit of https://github.com/mysql/mysql-connector-net/blob/8.0/MySQL.Data/src/MySqlHelper.cs
+        Fix MySqlHelper to take CommandType allowing StoredProcs to run properly
+
 Bugs:
     Update Tracking to log as DateTime (not Date)
-    Fix API ADao to open a connection on each request to prevent them from going stale
     Add Capacity to delete meals (Remove when RemainingWeight Drops <= 0)
         When MealTrackingRecord is removed increase Meal RemainingWeight by Quantity
 
