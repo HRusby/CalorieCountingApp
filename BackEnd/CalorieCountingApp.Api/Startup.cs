@@ -43,7 +43,13 @@ namespace CalorieCountingApp.Api
 
             app.UseCors(builder =>
                     builder
-                        .WithOrigins("http://localhost:3000", "http://localhost:7001", "http://localhost:8080", "http://localhost:8001")
+                        .WithOrigins(
+                            "http://localhost:3000",
+                            "http://localhost:5001",
+                            "http://localhost:7001",
+                            "http://localhost:8080",
+                            "http://localhost:8001",
+                            "http://frontend:8001")
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 
