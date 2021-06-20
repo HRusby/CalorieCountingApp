@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using BackEnd.CalorieCountingApp.Domain;
 using CalorieCountingApp.Data.Dao;
-using CalorieCountingApp.Domain.Enums;
 using MySql.Data.MySqlClient;
 
 namespace BackEnd.CalorieCountingApp.Data.Dao
@@ -16,11 +14,9 @@ namespace BackEnd.CalorieCountingApp.Data.Dao
 
         public List<Metric> GetMetrics()
         {
-            using (MySqlCommand cmd = new MySqlCommand("GetMetrics", Connection))
+            String commandText = "CALL CalorieCounting.GetMetrics()";
+            using (MySqlDataReader rdr = MySqlHelper.ExecuteReader(ConnectionString, commandText))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlDataReader rdr = cmd.ExecuteReader();
-
                 List<Metric> metrics = new List<Metric>();
                 while (rdr.Read())
                 {

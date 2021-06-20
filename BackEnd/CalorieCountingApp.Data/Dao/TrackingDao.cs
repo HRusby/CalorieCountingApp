@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using BackEnd.CalorieCountingApp.Data.Dao;
 using BackEnd.CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain;
 using CalorieCountingApp.Domain.Enums;
@@ -17,13 +18,13 @@ namespace CalorieCountingApp.Data.Dao
 
         public List<DisplayableTrackingRecord> GetTrackingDataForDateAndUser(TrackingDataRequest request)
         {
-            using (MySqlCommand cmd = new MySqlCommand("GetTrackingDataForDateAndUser", Connection))
+            String commandText = "CALL CalorieCounting.GetTrackingDataForDateAndUser(@$UserId, @$Date)";
+            MySqlParameter[] sqlParameters = new MySqlParameter[2]{
+                new MySqlParameter("$UserId", request.UserId),
+                new MySqlParameter("$Date", request.Date)
+            };
+            using (MySqlDataReader rdr = MySqlHelper.ExecuteReader(ConnectionString, commandText, sqlParameters))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new MySqlParameter("$UserId", request.UserId));
-                cmd.Parameters.Add(new MySqlParameter("$Date", request.Date));
-                MySqlDataReader rdr = cmd.ExecuteReader();
-
                 List<DisplayableTrackingRecord> records = new List<DisplayableTrackingRecord>();
                 while (rdr.Read())
                 {
@@ -38,53 +39,50 @@ namespace CalorieCountingApp.Data.Dao
                         rdr.GetString("MealOrIngredientName"),
                         rdr.GetString("MetricShortName")
                     );
+
                     records.Add(record);
                 }
+
                 return records;
             }
         }
 
         public bool DeleteTrackingRecord(int trackingId)
         {
-            using (MySqlCommand cmd = new MySqlCommand("DeleteTrackingRecord", Connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new MySqlParameter("$TrackingId", trackingId));
-                int affectedRows = cmd.ExecuteNonQuery();
-                return affectedRows == 1;
-            }
+            String commandText = "DeleteTrackingRecord";
+
+            int affectedRows = MySqlHelperExtensions.ExecuteNonQuery(ConnectionString, commandText, CommandType.StoredProcedure, new MySqlParameter("$TrackingId", trackingId));
+            return affectedRows == 1;
         }
 
         public int AddTrackingRecord(TrackingRecord record, string storedProcName)
         {
-            using (MySqlCommand cmd = new MySqlCommand(storedProcName, Connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                MySqlParameter generatedId = CreateOutputParameter("$GeneratedId", MySqlDbType.Int32);
-                cmd.Parameters.Add(new MySqlParameter("$UserId", record.UserId));
-                cmd.Parameters.Add(new MySqlParameter("$Quantity", record.Quantity));
-                cmd.Parameters.Add(new MySqlParameter("$Calories", record.Calories));
-                cmd.Parameters.Add(new MySqlParameter("$DateTime", record.DateTime));
-                cmd.Parameters.Add(new MySqlParameter("$MealOrIngredientId", record.MealOrIngredientId));
-                cmd.Parameters.Add(generatedId);
-                cmd.ExecuteNonQuery();
-                return Convert.ToInt32(generatedId.Value);
-            }
+            MySqlParameter generatedId = CreateOutputParameter("$GeneratedId", MySqlDbType.Int32);
+            MySqlParameter[] sqlParams = new MySqlParameter[6]{
+                new MySqlParameter("$UserId", record.UserId),
+                new MySqlParameter("$Quantity", record.Quantity),
+                new MySqlParameter("$Calories", record.Calories),
+                new MySqlParameter("$DateTime", record.DateTime),
+                new MySqlParameter("$MealOrIngredientId", record.MealOrIngredientId),
+                generatedId
+            };
+
+            MySqlHelperExtensions.ExecuteNonQuery(ConnectionString, storedProcName, CommandType.StoredProcedure, sqlParams);
+            return Convert.ToInt32(generatedId.Value);
         }
 
         public bool UpdateTrackingRecord(TrackingRecord updatedRecord, string storedProcName)
         {
-            using (MySqlCommand cmd = new MySqlCommand(storedProcName, Connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new MySqlParameter("$IndividualTrackingId", updatedRecord.Id));
-                cmd.Parameters.Add(new MySqlParameter("$Quantity", updatedRecord.Quantity));
-                cmd.Parameters.Add(new MySqlParameter("$Calories", updatedRecord.Calories));
-                cmd.Parameters.Add(new MySqlParameter("$DateTime", updatedRecord.DateTime));
-                cmd.Parameters.Add(new MySqlParameter("$MealOrIngredientId", updatedRecord.MealOrIngredientId));
-                int affectedRows = cmd.ExecuteNonQuery();
-                return affectedRows == 1;
-            }
+            MySqlParameter[] sqlParams = new MySqlParameter[5]{
+                new MySqlParameter("$IndividualTrackingId", updatedRecord.Id),
+                new MySqlParameter("$Quantity", updatedRecord.Quantity),
+                new MySqlParameter("$Calories", updatedRecord.Calories),
+                new MySqlParameter("$DateTime", updatedRecord.DateTime),
+                new MySqlParameter("$MealOrIngredientId", updatedRecord.MealOrIngredientId)
+            };
+
+            int affectedRows = MySqlHelperExtensions.ExecuteNonQuery(ConnectionString, storedProcName, CommandType.StoredProcedure, sqlParams);
+            return affectedRows == 1;
         }
     }
 }
