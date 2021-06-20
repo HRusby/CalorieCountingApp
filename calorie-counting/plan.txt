@@ -10,8 +10,11 @@ Bugs:
     Update Tracking to log as DateTime (not Date)
     Add Capacity to delete meals (Remove when RemainingWeight Drops <= 0)
         When MealTrackingRecord is removed increase Meal RemainingWeight by Quantity
-
+    Empty Forms on submit
+    
     Check Update/Add StoredProcs what happens if values are null?
 
     Update stored proc UpdateMealTrackingRecord to ensure RemainingWeight is updated in relation to change of $Quantity
     not as a flat value of the input $Quantity parameter
+
+    Update Stored Proc GetTrackingDataForDateAndUser to look for datetime range based on date
