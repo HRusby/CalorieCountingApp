@@ -4,12 +4,10 @@ TODO:
     New User adding
 
 Bugs:
-    Adding meals to past dates
-    Make sure the remaining weight is updated when a serving is taken
+    Update Tracking to log as DateTime (not Date)
     Fix API ADao to open a connection on each request to prevent them from going stale
     Add Capacity to delete meals (Remove when RemainingWeight Drops <= 0)
         When MealTrackingRecord is removed increase Meal RemainingWeight by Quantity
-    Update CalorieTracking to ensure TrackingRecord uses DateTime not Date
 
     Check Update/Add StoredProcs what happens if values are null?
 
