@@ -5,7 +5,7 @@ services:
     image: caloriecounting-database-image
     container_name: caloriecounting-db
     volumes:
-      - caloriecounting-db:/var/lib/mysql
+      - ./.Volumes/caloriecounting-db/:/config/databases/
       - ./Database/:/CalorieCountingApp/
     restart: always 
     environment:
@@ -43,5 +43,3 @@ services:
         - backend
       ports:
         - "8001:80"
-volumes:
-  caloriecounting-db:

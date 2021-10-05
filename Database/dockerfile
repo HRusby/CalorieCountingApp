@@ -21,3 +21,6 @@ EXPOSE 3306
 ### Connecting to mysql from host ###
 # mysql -h localhost -P 6001 --protocol=tcp -u root -padmin
 #docker run -d --name=caloriecounting-database -p 6001:3306 -v caloriecounting-db:/var/lib/mysql caloriecounting-database-image
+
+### If Volume no longer persists data
+# Check that the volume is being mounted to the location given from 'Select @@datadir'

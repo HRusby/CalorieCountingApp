@@ -13,13 +13,13 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 ### Docker Build ###
-# docker build --network=host -t todolist-frontend-image .
+# docker build --network=host -t caloriecounting-frontend-image .
 
 ### Docker Run ###
 # docker run -it \
-# -v ${PWD}:/todolist-frontend \
-# -v /todolist/node_modules \
+# -v ${PWD}:/caloriecounting-frontend \
+# -v /caloriecounting/node_modules \
 # -p 7001:3000 \
 # -e CHOKIDAR_USEPOLLING=true \
-# --name=todolist-frontend \
-# todolist-frontend-image
+# --name=caloriecounting-frontend \
+# caloriecounting-frontend-image
