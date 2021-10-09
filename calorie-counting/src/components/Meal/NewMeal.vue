@@ -40,7 +40,6 @@ export default {
   name: "NewMeal",
   data() {
     return {
-      metrics: [],
       mealName: "",
       weight: null,
       selectedMetricId: NaN,
@@ -65,9 +64,16 @@ export default {
         },
         body: JSON.stringify(newMeal),
       })
-        .then((resp) => resp.json())
-        .then((mealId) => (newMeal.id = mealId))
-        .then(() => this.$emit("mealCreated", newMeal));
+      .then((resp) => resp.json())
+      .then((mealId) => (newMeal.id = mealId))
+      .then(() => this.$emit("mealCreated", newMeal))
+      .then(()=>this.resetForm());
+    },
+    resetForm(){
+      this.mealName = ""
+      this.weight = null
+      this.selectedMetricId = NaN
+      this.cookedOn = new Date().toISOString().substr(0,10)
     }
   },
 };

@@ -41,12 +41,7 @@ export default {
         this.dateTime = this.modelValue + 'T' + this.currentTime()
     },
     methods:{
-        currentTime(){
-            var curDate = new Date();
-            return (curDate.getHours()+':'+curDate.getMinutes())
-        },
         submitForm(){
-            console.log(this.givenDateTime)
             let record = {
                 mealOrIngredientId: this.mealOrIngredientId,
                 userId: this.$store.getters.selectedUser,
@@ -69,7 +64,17 @@ export default {
                 }else{
                     alert('Adding ' + this.typeId === 1 ? 'Meal Serving' : this.typeId === 2 ? 'Individual Ingredient' :'' + 'Unsuccessful')
                 }
-            });
+            })
+            .then(()=>this.resetForm());
+        },
+        currentTime(){
+            var curDate = new Date();
+            return (curDate.getHours()+':'+curDate.getMinutes())
+        },
+        resetForm(){
+            this.mealOrIngredientId = NaN
+            this.quantity = NaN
+            this.dateTime = this.modelValue + 'T' + this.currentTime()
         }
     }
 }

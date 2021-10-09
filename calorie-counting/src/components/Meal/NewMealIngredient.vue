@@ -34,6 +34,12 @@ export default {
             }
 
             this.$emit("addMealIngredient", ingredient)
+            this.resetForm()
+        },
+        resetForm(){
+            this.ingredientId = NaN
+            this.metricId = NaN
+            this.quantity = null
         }
     }
 }

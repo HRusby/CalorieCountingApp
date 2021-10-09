@@ -62,12 +62,18 @@ export default {
         },
         body: JSON.stringify(ingredient),
       })
-        .then((resp) => resp.json())
-        .then((id) => (ingredient["id"] = id))
-        .then(() => this.$emit("ingredientCreated", ingredient));
-
-      // Push ingredient object to parent and in parent add to list of ingredients
+      .then((resp) => resp.json())
+      .then((id) => (ingredient["id"] = id))
+      .then(() => this.$emit("ingredientCreated", ingredient))
+      .then(()=>this.restForm())
     },
+    resetForm(){
+      this.name = ""
+      this.calories = null
+      this.metricQuantity = null
+      this.caloriesPerMetric = null
+      this.metricId = NaN
+    }
   },
 };
 </script>
