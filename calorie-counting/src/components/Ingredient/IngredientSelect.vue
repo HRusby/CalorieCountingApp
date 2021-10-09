@@ -54,6 +54,7 @@ export default {
     selectNewIngredient(newIngredient) {
       this.getIngredients()
       this.selectedIngredientId = newIngredient.id
+      this.showNewIngredientModal = !this.showNewIngredientModal
       // TODO:  Update NewIngredient to also get MetricShortName when adding ingredient 
       //          so the additional lookup isn't necessary. Can be done by updating MetricSelect
       //          to bind a Metric Object rather than metricId then below code can be used instead.

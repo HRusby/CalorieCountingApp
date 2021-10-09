@@ -7,11 +7,8 @@ TODO:
         Fix MySqlHelper to take CommandType allowing StoredProcs to run properly
 
 Bugs:
-    Update Tracking to log as DateTime (not Date)
     Add Capacity to delete meals (Archive when RemainingWeight Drops <= 0)
         When MealTrackingRecord is removed increase Meal RemainingWeight by Quantity
-    On Add Ingredient Close Window
-    Empty Forms on submit
     
     Check Update/Add StoredProcs what happens if values are null?
 

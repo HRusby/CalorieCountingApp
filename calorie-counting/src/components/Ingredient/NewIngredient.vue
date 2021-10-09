@@ -65,7 +65,7 @@ export default {
       .then((resp) => resp.json())
       .then((id) => (ingredient["id"] = id))
       .then(() => this.$emit("ingredientCreated", ingredient))
-      .then(()=>this.restForm())
+      .then(()=>this.resetForm())
     },
     resetForm(){
       this.name = ""
