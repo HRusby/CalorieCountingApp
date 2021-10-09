@@ -1,4 +1,4 @@
-CREATE PROCEDURE AddTrackingRecord (
+CREATE OR REPLACE PROCEDURE AddTrackingRecord (
 	IN $UserId INTEGER,
     IN $TrackingTypeId INTEGER,
     IN $Quantity DOUBLE,
@@ -16,8 +16,8 @@ BEGIN
     VALUES (
         $UserId,
         $TrackingTypeId,
-        $Quantity,
-        $Calories,
+        ROUND($Quantity, 2),
+        ROUND($Calories, 2),
         $DateTime
     );
 

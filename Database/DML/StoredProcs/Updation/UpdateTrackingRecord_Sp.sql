@@ -6,8 +6,8 @@ CREATE OR REPLACE PROCEDURE UpdateTrackingRecord (
 )
 BEGIN
 	UPDATE TRACKING SET
-    Quantity = IFNULL($Quantity, Quantity),
-    Calories = IFNULL($Calories, Calories),
+    Quantity = ROUND(IFNULL($Quantity, Quantity), 2),
+    Calories = ROUND(IFNULL($Calories, Calories), 2),
     `DateTime` = IFNULL($DateTime, `DateTime`)
     WHERE Id = $TrackingId;
 END;
