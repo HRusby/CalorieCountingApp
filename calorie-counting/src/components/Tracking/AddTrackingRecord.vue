@@ -69,7 +69,7 @@ export default {
         },
         currentTime(){
             var curDate = new Date();
-            return (curDate.getHours()+':'+curDate.getMinutes())
+            return (((curDate.getHours()<10?'0':'') + curDate.getHours())+':'+((curDate.getMinutes()<10?'0':'') + curDate.getMinutes()))
         },
         resetForm(){
             this.mealOrIngredientId = NaN

@@ -84,9 +84,8 @@ export default {
         },
         body: JSON.stringify(trackingRequest),
       })
-        .then((resp) => resp.json())
-        .then((data) => (this.trackingRecords = data))
-        .then(()=>console.log(this.trackingRecords));
+      .then((resp) => resp.json())
+      .then((data) => (this.trackingRecords = data))
     },
     addRecord() {
       this.showAddRecord = false;
