@@ -62,7 +62,8 @@ namespace CalorieCountingApp.Data.Dao
                         rdr.GetInt32("Id"),
                         rdr.GetInt32("MealId"),
                         rdr.GetString("IngredientName"),
-                        rdr.GetDouble("Quantity")
+                        rdr.GetDouble("Quantity"),
+                        rdr.GetString("MetricShortName")
                     );
                     mealIngredients.Add(meal);
                 }

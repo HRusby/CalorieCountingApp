@@ -7,16 +7,20 @@ namespace CalorieCountingApp.Domain
         public string IngredientName { get; private set; }
         public double Quantity { get; private set; }
 
+        public string MetricShortName { get; private set; }
+
         public DisplayableMealIngredient(
             int id,
             int mealId,
-            string ingredientName,         
-            double quantity)
+            string ingredientName,
+            double quantity,
+            string metricShortName)
         {
             Id = id;
             MealId = mealId;
-            IngredientName = ingredientName;       
-            Quantity = quantity;            
+            IngredientName = ingredientName;
+            Quantity = quantity;
+            MetricShortName = metricShortName;
         }
     }
 }
