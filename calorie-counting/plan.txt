@@ -2,6 +2,9 @@ TODO:
     Add Validation to Frontend forms
     CSS Everywhere
     New User adding
+    Add Calorie total to Tracking screen
+    Limit Calories displayed to 2 dp
+    Update Tracking Record to be Editable
 
     Make fork and commit of https://github.com/mysql/mysql-connector-net/blob/8.0/MySQL.Data/src/MySqlHelper.cs
         Fix MySqlHelper to take CommandType allowing StoredProcs to run properly
