@@ -8,6 +8,7 @@
       v-model="trackingDate"
       @change="getTrackingData"
     />
+    <h2>Calorie Total: {{trackingRecords.reduce((a,b)=>{return a+b.calories}, 0)}}</h2>
     <table class="table-auto">
       <thead>
         <th>Name</th>
@@ -86,6 +87,7 @@ export default {
       })
       .then((resp) => resp.json())
       .then((data) => (this.trackingRecords = data))
+      .then(()=>console.log(this.trackingRecords))
     },
     addRecord() {
       this.showAddRecord = false;
