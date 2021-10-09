@@ -34,18 +34,25 @@ export default {
         return {
             mealOrIngredientId: NaN,
             quantity: NaN,
-            dateTime: new Date(new Date(Date.parse(this.modelValue)).setTime(new Date().getTime()))
+            dateTime: this.modelValue + 'T' + this.currentTime()
         }
     },
+    updated(){
+        this.dateTime = this.modelValue + 'T' + this.currentTime()
+    },
     methods:{
+        currentTime(){
+            var curDate = new Date();
+            return (curDate.getHours()+':'+curDate.getMinutes())
+        },
         submitForm(){
-            console.log(this.dateTime)
+            console.log(this.givenDateTime)
             let record = {
                 mealOrIngredientId: this.mealOrIngredientId,
                 userId: this.$store.getters.selectedUser,
                 typeId: this.typeId,
                 quantity: this.quantity,
-                dateTime: this.dateTime
+                dateTime: new Date(this.dateTime).toJSON()
             }
 
             fetch(ConfigData.backendUrl + "Tracking/AddNewRecord", {
